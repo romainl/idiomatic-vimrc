@@ -1,3 +1,3 @@
 idiomatic-vimrc
 ===============
-Guidelines for sculting your `~/.vimrc`.
+Guidelines for sculpting your `~/.vimrc`.
