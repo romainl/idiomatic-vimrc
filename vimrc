@@ -1,36 +1,68 @@
-"""""""""""""""""""""
-"""""""""""""""""""""
-"" IDIOMATIC VIMRC ""
-"""""""""""""""""""""
-"""""""""""""""""""""
+" Keeping your lovely 'vimrc' INSIDE of your 'vim' directory is a good idea,
+" if only because it makes it easier to move your config around.
+
+" If you are using 7.4 exclusively, the following will be enough:
+"
+"   on Unix-like systems    ~/.vim/vimrc
+"   on Windows              %userprofile%\vimfiles\vimrc
+
+" If you use both 7.4 and an older version, or only an older version,
+" the simplest, future-proof, solution is to put this line and only
+" this line:
+"
+"   runtime vimrc
+"
+" in this file:
+"
+"   on Unix-like systems    ~/.vimrc
+"   on Windows              %userprofile%\_vimrc
+"
+" and do your configuration in '~/.vim/vimrc' or '%userprofile%\vimfiles\vimrc'.
+
+" MISCELLANEOUS ADVICES
 
 " * Using short names has *only* cons and *zero* pros. Don't.
+" * Learning how to use Vim's fantastic documentation is the most useful thing
+"   a Vim newcomer could do:
+"       :help :command
+"       :help function()
+"       :help 'option'
+"       :help i_ctrl-a
+"       :helpgrep foo
+"       :help get<C-d>
+"       <C-]> on an highlighted tag to jump to the corresponding entry
+"       <C-t> to come back
 " * Always refer to the relevant ':help' page before adding anything to your vimrc.
-" * You don't need 'set nocompatible' if you have a vimrc:
-"     UNIX & Co.:   $HOME/.vimrc (in 7.4, use $HOME/.vim/vimrc)
-"     Windows   :   $HOME\_vimrc (in 7.4, use $HOME\vimfiles\vimrc)
+" * You don't need 'set nocompatible' if you have a custom 'vimrc' at the expected
+"   location.
 " * 'set background=dark' doesn't do what you think it does.
-" * 'set t_Co=256' is pointless, set your terminal emulator up correctly instead.
-" * If you have a lot of autocmds for a lot of filetype-specific settings,
+" * 'set t_Co=256' is a bad idea, set your terminal emulator up properly instead.
+" * 'set paste' has a lot of side effects, don't put it in your 'vimrc'.
+" * If you have a lot of autocommands for a lot of filetype-specific settings,
 "   consider moving those setting to proper ftplugins.
 " * If you have a lot of custom functions, consider moving them
-"   to '~/.vim/autoload/'. See ':help autoload'.
+"   to the 'autoload/' directory. See ':help autoload'.
+" * You can have syntax checking on write with three lines in your 'vimrc',
+"   same for 'ack' or 'ag' integration, so make sure you have exhausted Vim's features
+"   before installing a plugin.
 
-"""""""""""
-" OPTIONS "
-"""""""""""
+" OPTIONS
 
-" * Use ':set option?' to check the value of an option.
-" * Use ':verbose set option?' to also see where it was last set.
-" * See ':help options'.
+" There are three kinds of options:
+" * boolean options,
+" * string options,
+" * number options.
+" Checking the value of an option:
+" * use ':set option?' to check the value of an option,
+" * use ':verbose set option?' to also see where it was last set.
 
-" Binary options
-set binoption       " Set binoption
-set nobinoption     " Unset binoption
+" Boolean options
+set booloption      " Set booloption
+set nobooloption    " Unset booloption
 
-set binoption!      " Toggle binoption
+set booloption!     " Toggle booloption
 
-set binoption&      " Reset binoption to its default value
+set booloption&     " Reset booloption to its default value
 
 " String options
 set stroption=baz   " baz
@@ -50,46 +82,29 @@ set numoption+=2    " 1 + 2 == 3
 set numoption-=1    " 3 - 1 == 2
 set numoption^=8    " 2 * 8 == 16
 
-"""""""""""""
-" VARIABLES "
-"""""""""""""
-
-" Plugins use global variables as options. Note the spacing
-" around the equal sign:
-let g:my_plugin_variable = 'baz'
-
-""""""""""""
-" MAPPINGS "
-""""""""""""
+" MAPPINGS
 
 " * Don't put comments after mappings.
-" * Use ':map <key>' to see what's mapped to '<key>' and in which mode.
-" * Use ':verbose map <key>' to also see where it was last mapped.
-" * See ':help mapping' and ':help key-notation'.
+" * Use ':map <F6>' to see what is mapped to '<F6>' and in which mode.
+" * Use ':verbose map <F6>' to also see where it was last mapped.
+" * See ':help key-notation'.
 
-" Normal mode
-nmap <key> something
-" Insert mode
-imap <key> something
-" Visual mode
-xmap <key> something
+" Normal mode mapping
+nmap <key> yyp
+" Insert mode mapping
+imap <key> <Esc>yyp
+" Visual mode mapping
+xmap <key> y<Esc>p
 
-" Recursive mappings vs non-recursive mappings
-" ============================================
-" The three recursive mappings above will do 'something', whatever it
-" currently means. If 'something' hasn't been remapped by you
-" or some plugin, your mapping will work as intended but, if its meaning
-" was changed you'll get the new meaning which may or may not do unexpected
-" things. Non-recursive mappings, on the other hand, always use the original
-" meaning of the commands you use in your mappings.
-" Rule of thumbs:
-" * If you use another mapping (custom or third-party) in your
-"   mapping, go with a recursive mapping like the ones above.
-" * If you use a built-in command in your mapping, go with
-"   a non-recursive mapping:
-nnoremap <key> something
-inoremap <key> something
-xnoremap <key> something
+" With the three mappings above, the commands used in the RHS
+" are executed with their current meaning. If the meaning of one
+" of those commands is already changed with a mapping somewhere,
+" your mapping may not do what you expect it to do.
+" It is generally preferred to use this form:
+nnoremap <key> yyp
+inoremap <key> <Esc>yyp
+xnoremap <key> y<Esc>p
+" unless you actually want recursion.
 
 " Executing a command from a mapping
 nnoremap <key> :MyCommand<CR>
@@ -100,80 +115,69 @@ nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
 " Calling a function from a mapping
 nnoremap <key> :call SomeFunction()<CR>
 
-""""""""""""
-" COMMANDS "
-""""""""""""
+" VARIABLES
 
+" Like most scripting languages, vimscript has variables.
+" One can define a variable with the ':let' command:
+let variable = value
+
+" And delete it with ':unlet':
+unlet variable
+
+" In Vim, variables can be scoped by prepending a single letter
+" and a colon to their name. Plugin authors use that feature to
+" mimic options:
+let g:plugin_variable = 1
+
+" Read up on the subject in ':help internal-variables'.
+
+" COMMANDS
+
+" * Don't forget the bang to allow Vim to overwrite that
+"   command the next time you reload your vimrc.
 " * Custom commands must start with an uppercase.
 " * See ':help user-commands'.
-
-" * Defining a command that calls a function.
-" * Don't forget the bang to allow Vim to overwrite that command
-"   the next time you reload your vimrc.
 command! MyCommand call SomeFunction()
+command! MyOtherCommand command | Command | command
 
-" * Defining a command that calls other commands.
-" * Don't forget the bang to allow Vim to overwrite that command
-"   the next time you reload your vimrc.
-command! MyCommand SomeCommand | SomeOtherCommand
+" FUNCTIONS
 
-"""""""""""""
-" FUNCTIONS "
-"""""""""""""
-
+" * Don't forget the bang to allow Vim to overwrite that 
+"   function the next time you reload your vimrc.
 " * Custom functions must start with an uppercase.
 " * See ':help user-functions'.
-
-" * Defining a function.
-" * Don't forget the bang to allow Vim to overwrite that command
-"   the next time you reload your vimrc.
 function! MyFunction(foo, bar)
   return a:foo . a:bar
 endfunction
 
-""""""""""""""""
-" AUTOCOMMANDS "
-""""""""""""""""
+" AUTOCOMMANDS
 
-" * Autocommands are a handy way to automize the setting
-"   of options or the execution of commands upon specific events
-"   like opening a file or entering insert mode but they
-"   tend to pile up and lead to performance issues over time.
-"   So we create a named `augroup` that automatically clears
-"   itself each time it is sourced.
+" * Autocommand groups are good for organization but they can be useful
+"   for debugging too. Think of them as small namespaces that you
+"   can enable/disable at will.
 " * See ':help autocommand'.
 augroup MyGroup
-
-  " Clear the autocommands of the current group
+  " Clear the autocmds of the current group
   " to prevent them from piling up each time
   " you reload your vimrc.
   autocmd!
 
-  " These autocommands are fired after the filetype of a buffer
-  " is defined. Don't forget to use setlocal (for options)
-  " and <buffer> (for mappings) to prevent your settings to
-  " 'leak' in other buffers with a different filetype.
-  autocmd FileType foo setlocal foo bar=baz
+  " These autocmds are fired after the filetype of a buffer
+  " is defined to 'foo'. Don't forget to use 'setlocal' (for options)
+  " and '<buffer>' (for mappings) to prevent your settings to
+  " leak in other buffers with a different filetype.
+  autocmd FileType foo setlocal bar=baz
   autocmd FileType foo nnoremap <buffer> <key> :command<CR>
 
-  " This autocommand calls MyFunction() everytime Vim tries to create/edit
-  " a buffer tied to a file in /path/to/project/**/.
+  " This autocmd calls 'MyFunction()' everytime Vim tries to create/edit
+  " a buffer tied to a file in /'path/to/project/**/'.
   autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
-
 augroup END
 
-""""""""""""""""
-" CONDITIONALS "
-""""""""""""""""
-
-if has('feature')
-  " do something if Vim is built with 'feature'
-  " see ':help feature-list'
-endif
+" CONDITIONALS
 
 if v:version >= 704
     " do something if Vim is the right version
-    " '704' is '7.4', '600' is '6.0'
 endif
 
 if has('patch666')
@@ -181,17 +185,25 @@ if has('patch666')
     " see ':help has-patch'
 endif
 
-""""""""""""""""""""""""""""
-" SYSTEM-SPECIFIC SETTINGS "
-""""""""""""""""""""""""""""
-
-if has('win32') || has('win16')
-    " do something if we are on Windows
-else
-    let OS = substitute(system('uname'), '\n', '', '')
-    if OS == 'Darwin'
-        " do something if we are on Mac OS X
-    elseif OS == 'Linux'
-        " do something if we are on Linux
-    endif
+if has('feature')
+  " do something if Vim is built with 'feature'
+  " see ':help feature-list'
 endif
+
+" SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
+
+" filetype support and syntax highlighting
+filetype plugin indent on
+syntax on
+
+" built-in 'matchit.vim'
+" hit '%' on 'if' to jump to 'else'â€¦
+runtime macros/matchit.vim
+
+" various settings
+set autoindent                 " automatic indenting for buffers not associated with a filetype
+set backspace=indent,eol,start " proper backspace behavior
+set hidden                     " possibility to have more than one unsaved buffers
+set incsearch                  " incremental search, hit '<CR>' to stop
+set ruler                      " shows the current line number at the bottom right
+set wildmenu                   " great command-line completion, use '<Tab>' to move around and `<CR>` to validate
