@@ -1,14 +1,19 @@
-" Keeping your lovely 'vimrc' INSIDE of your 'vim' directory is a good idea,
-" if only because it makes it easier to move your config around.
-
+" The canonical location for your 'vimrc' is your '$HOME' directory:
+"
+"   on Unix-like systems    ~/.vimrc
+"   on Windows              %userprofile%\_vimrc
+"
+" Since 7.4, it is now possible to keep your lovely 'vimrc' INSIDE of your 'vim
+" directory. It is really a good idea, if only because it makes it easier to
+" move your config around.
+"
 " If you are using 7.4 exclusively, the following will be enough:
 "
 "   on Unix-like systems    ~/.vim/vimrc
 "   on Windows              %userprofile%\vimfiles\vimrc
-
-" If you use both 7.4 and an older version, or only an older version,
-" the simplest, future-proof, solution is to put this line and only
-" this line:
+"
+" If you use both 7.4 and an older version, the simplest, future-proof,
+" solution is to put this line and *only* this line:
 "
 "   runtime vimrc
 "
