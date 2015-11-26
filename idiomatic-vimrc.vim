@@ -26,8 +26,8 @@
 
 " MISCELLANEOUS ADVICES
 
-" * Using short names has *only* cons and *zero* pros. Don't.
-" * Learning how to use Vim's fantastic documentation is the most useful thing
+" - Using short names has *only* cons and *zero* pros. Don't.
+" - Learning how to use Vim's fantastic documentation is the most useful thing
 "   a Vim newcomer could do:
 "       :help :command
 "       :help function()
@@ -37,29 +37,29 @@
 "       :help get<C-d>
 "       <C-]> on an highlighted tag to jump to the corresponding entry
 "       <C-t> to come back
-" * Always refer to the relevant ':help' page before adding anything to your vimrc.
-" * You don't need 'set nocompatible' if you have a custom 'vimrc' at the expected
+" - Always refer to the relevant ':help' page before adding anything to your vimrc.
+" - You don't need 'set nocompatible' if you have a custom 'vimrc' at the expected
 "   location.
-" * 'set background=dark' doesn't do what you think it does.
-" * 'set t_Co=256' is a bad idea, set your terminal emulator up properly instead.
-" * 'set paste' has a lot of side effects, don't put it in your 'vimrc'.
-" * If you have a lot of autocommands for a lot of filetype-specific settings,
+" - 'set background=dark' doesn't do what you think it does.
+" - 'set t_Co=256' is a bad idea, set your terminal emulator up properly instead.
+" - 'set paste' has a lot of side effects, don't put it in your 'vimrc'.
+" - If you have a lot of autocommands for a lot of filetype-specific settings,
 "   consider moving those setting to proper ftplugins.
-" * If you have a lot of custom functions, consider moving them
+" - If you have a lot of custom functions, consider moving them
 "   to the 'autoload/' directory. See ':help autoload'.
-" * You can have syntax checking on write with three lines in your 'vimrc',
+" - You can have syntax checking on write with three lines in your 'vimrc',
 "   same for 'ack' or 'ag' integration, so make sure you have exhausted Vim's features
 "   before installing a plugin.
 
 " OPTIONS
 
 " There are three kinds of options:
-" * boolean options,
-" * string options,
-" * number options.
+" - boolean options,
+" - string options,
+" - number options.
 " Checking the value of an option:
-" * use ':set option?' to check the value of an option,
-" * use ':verbose set option?' to also see where it was last set.
+" - use ':set option?' to check the value of an option,
+" - use ':verbose set option?' to also see where it was last set.
 
 " Boolean options
 set booloption      " Set booloption
@@ -89,10 +89,10 @@ set numoption^=8    " 2 * 8 == 16
 
 " MAPPINGS
 
-" * Don't put comments after mappings.
-" * Use ':map <F6>' to see what is mapped to '<F6>' and in which mode.
-" * Use ':verbose map <F6>' to also see where it was last mapped.
-" * See ':help key-notation'.
+" - Don't put comments after mappings.
+" - Use ':map <F6>' to see what is mapped to '<F6>' and in which mode.
+" - Use ':verbose map <F6>' to also see where it was last mapped.
+" - See ':help key-notation'.
 
 " Normal mode mapping
 nmap <key> yyp
@@ -138,29 +138,29 @@ let g:plugin_variable = 1
 
 " COMMANDS
 
-" * Don't forget the bang to allow Vim to overwrite that
+" - Don't forget the bang to allow Vim to overwrite that
 "   command the next time you reload your vimrc.
-" * Custom commands must start with an uppercase.
-" * See ':help user-commands'.
+" - Custom commands must start with an uppercase.
+" - See ':help user-commands'.
 command! MyCommand call SomeFunction()
 command! MyOtherCommand command | Command | command
 
 " FUNCTIONS
 
-" * Don't forget the bang to allow Vim to overwrite that 
+" - Don't forget the bang to allow Vim to overwrite that 
 "   function the next time you reload your vimrc.
-" * Custom functions must start with an uppercase.
-" * See ':help user-functions'.
+" - Custom functions must start with an uppercase.
+" - See ':help user-functions'.
 function! MyFunction(foo, bar)
   return a:foo . a:bar
 endfunction
 
 " AUTOCOMMANDS
 
-" * Autocommand groups are good for organization but they can be useful
+" - Autocommand groups are good for organization but they can be useful
 "   for debugging too. Think of them as small namespaces that you
 "   can enable/disable at will.
-" * See ':help autocommand'.
+" - See ':help autocommand'.
 augroup MyGroup
   " Clear the autocmds of the current group
   " to prevent them from piling up each time
