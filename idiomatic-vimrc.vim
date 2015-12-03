@@ -202,7 +202,7 @@ filetype plugin indent on
 syntax on
 
 " built-in 'matchit.vim'
-" hit '%' on 'if' to jump to 'else'â€¦
+" hit '%' on 'if' to jump to 'else'
 runtime macros/matchit.vim
 
 " various settings
