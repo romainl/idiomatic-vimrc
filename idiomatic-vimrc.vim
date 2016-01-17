@@ -12,7 +12,7 @@
 " - on Windows, '$HOME' is usually 'C:\Users\username\'.
 
 " The canonical location for your 'vimrc' and your 'vim' directory is at
-" the root of that directory:
+" the root of that '$HOME' directory:
 "
 "     on Unix-like systems    $HOME/vimrc
 "                             $HOME/.vim/
@@ -46,6 +46,7 @@
 " - Using short names has ONLY cons and ZERO pros. Don't.
 " - Learning how to use Vim's fantastic documentation is the most useful thing
 "   a Vim newcomer could do:
+"
 "     :help :command
 "     :help function()
 "     :help 'option'
@@ -54,6 +55,7 @@
 "     :help get<C-d>
 "     <C-]> on an highlighted tag to jump to the corresponding entry
 "     <C-t> to come back
+"
 " - Always refer to the relevant ':help' before adding anything to your vimrc.
 " - You don't need 'set nocompatible' if you have a custom 'vimrc' at the
 "   expected location.
@@ -62,14 +64,18 @@
 " - 'set paste' has a lot of side effects, don't put it in your 'vimrc'.
 " - If you have a lot of autocommands for a lot of filetype-specific settings,
 "   consider moving the setting to proper ftplugins:
+"
 "     ~/.vim/after/ftplugin/php.vim
+"
 " - If you have a lot of custom functions, consider moving them
 "   to the 'autoload/' directory. See ':help autoload':
+"
 "     ~/.vim/autoload/myfunctions.vim
 "     call myfunctions#foo()
+"
 " - Vim already gives you the ability to browse local and remote filesystems,
 "   integrate 'ack' or 'ag', navigate, complete and compile your code, run
-"   syntax checkers on write, consult documentation, filter text through
+"   syntax checkers on write, read documentation, filter text through
 "   external commands, etc. Make sure you have exhausted Vim's features before
 "   installing a plugin. Any plugin.
 
@@ -83,26 +89,26 @@
 " - use ':set option?' to check the value of an option,
 " - use ':verbose set option?' to also see where it was last set.
 
-" Setting boolean options
-set booloption      " Set booloption
-set nobooloption    " Unset booloption
+" Setting boolean options.
+set booloption      " Set booloption.
+set nobooloption    " Unset booloption.
 
-set booloption!     " Toggle booloption
+set booloption!     " Toggle booloption.
 
-set booloption&     " Reset booloption to its default value
+set booloption&     " Reset booloption to its default value.
 
-" Setting string options
+" Setting string options.
 set stroption=baz   " baz
 
 set stroption+=buzz " baz,buzz
 set stroption^=fizz " fizz,baz,buzz
 set stroption-=baz  " fizz,buzz
 
-set stroption=      " Unset stroption
+set stroption=      " Unset stroption.
 
-set stroption&      " Reset stroption to its default value
+set stroption&      " Reset stroption to its default value.
 
-" Setting number options
+" Setting number options.
 set numoption=1     " 1
 
 set numoption+=2    " 1 + 2 == 3
@@ -120,7 +126,7 @@ set numoption^=8    " 2 * 8 == 16
 "   See ':help map-commands'.
 
 " Use non-recursive mappings ONLY if you intend to use default commands in
-" your mappings, wWhich is almost always what you want.
+" your mappings, which is almost always what you want.
 nnoremap <key> yyp
 
 " Use recursive mappings ONLY if you intend to use other mappings
@@ -128,13 +134,13 @@ nnoremap <key> yyp
 nnoremap b     B
 nmap     <key> db
 
-" Executing a command from a mapping
+" Executing a command from a mapping.
 nnoremap <key> :MyCommand<CR>
 
-" Executing multiple commands from a mapping
+" Executing multiple commands from a mapping.
 nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
 
-" Calling a function from a mapping
+" Calling a function from a mapping.
 nnoremap <key> :call SomeFunction()<CR>
 
 " VARIABLES
@@ -212,8 +218,8 @@ endif
 
 " SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
 
-" Enabling filetype support provides filetype-specific indenting and syntax
-" highlighting.
+" Enabling filetype support provides filetype-specific indenting, syntax
+" highlighting and other useful settings.
 filetype plugin indent on
 syntax on
 
@@ -222,12 +228,12 @@ syntax on
 runtime macros/matchit.vim
 
 " various settings
-set autoindent                 " Minimal automatic indenting for any filetype
-set backspace=indent,eol,start " Proper backspace behavior
+set autoindent                 " Minimal automatic indenting for any filetype.
+set backspace=indent,eol,start " Proper backspace behavior.
 set hidden                     " Possibility to have more than one
-                               " unsaved buffers
-set incsearch                  " Incremental search, hit '<CR>' to stop
-set ruler                      " Shows the current line number at the bottom
-                               " right of the screen
+                               " unsaved buffers.
+set incsearch                  " Incremental search, hit '<CR>' to stop.
+set ruler                      " Shows the current line number at the bottom.
+                               " right of the screen.
 set wildmenu                   " Great command-line completion, use '<Tab>' to
-                               " move around and '<CR>' to validate
+                               " move around and '<CR>' to validate.
