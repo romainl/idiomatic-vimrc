@@ -17,7 +17,7 @@
 "     on Unix-like systems    $HOME/vimrc
 "                             $HOME/.vim/
 "     on Windows              $HOME\_vimrc
-"                             $HOME\vimfiles
+"                             $HOME\vimfiles\
 "
 " Vim 7.4 made it possible to keep your lovely 'vimrc' INSIDE your 'vim'
 " directory. It is really a good idea, if only because it makes it easier to
@@ -212,8 +212,8 @@ endif
 
 " SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
 
-" Enabling filetype support provides filetype-specific indenting
-" and syntax highlighting.
+" Enabling filetype support provides filetype-specific indenting and syntax
+" highlighting.
 filetype plugin indent on
 syntax on
 
@@ -225,9 +225,9 @@ runtime macros/matchit.vim
 set autoindent                 " Minimal automatic indenting for any filetype
 set backspace=indent,eol,start " Proper backspace behavior
 set hidden                     " Possibility to have more than one
-                               " Unsaved buffers
+                               " unsaved buffers
 set incsearch                  " Incremental search, hit '<CR>' to stop
 set ruler                      " Shows the current line number at the bottom
-                               " Right of the screen
+                               " right of the screen
 set wildmenu                   " Great command-line completion, use '<Tab>' to
-                               " Move around and '<CR>' to validate
+                               " move around and '<CR>' to validate
