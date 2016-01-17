@@ -1,16 +1,32 @@
-" The canonical location for your 'vimrc' is your '$HOME' directory:
+"""""""""""""""""""
+" IDIOMATIC VIMRC "
+"""""""""""""""""""
+" Guidelines for sculpting your very own 'vimrc'.
+
+" FILES AND DIRECTORIES
+
+" Whatever you do to customize Vim, it should NEVER happen outside of '$HOME':
 "
-"     on Unix-like systems    ~/.vimrc
-"     on Windows              %userprofile%\_vimrc
+" - on Linux, BSD and Cygwin, '$HOME' is usually '/home/username/',
+" - on Mac OS X, '$HOME' is '/Users/username/',
+" - on Windows, '$HOME' is usually 'C:\Users\username\'.
+
+" The canonical location for your 'vimrc' and your 'vim' directory is at
+" the root of that directory:
 "
-" Vim 7.4 made it possible to keep your lovely 'vimrc' INSIDE of your 'vim'
+"     on Unix-like systems    $HOME/vimrc
+"                             $HOME/.vim/
+"     on Windows              $HOME\_vimrc
+"                             $HOME\vimfiles
+"
+" Vim 7.4 made it possible to keep your lovely 'vimrc' INSIDE your 'vim'
 " directory. It is really a good idea, if only because it makes it easier to
 " move your config around.
 "
-" If you are using 7.4 exclusively, the following will be enough:
+" If you use 7.4 exclusively, the following will be enough:
 "
-"     on Unix-like systems    ~/.vim/vimrc
-"     on Windows              %userprofile%\vimfiles\vimrc
+"     on Unix-like systems    $HOME/.vim/vimrc
+"     on Windows              $HOME\vimfiles\vimrc
 "
 " If you use both 7.4 and an older version, or only an older version,
 " the simplest, future-proof, solution is to put this line and only
@@ -20,14 +36,14 @@
 "
 " in this file:
 "
-"     on Unix-like systems    ~/.vimrc
-"     on Windows              %userprofile%\_vimrc
+"     on Unix-like systems    $HOME/.vimrc
+"     on Windows              $HOME\_vimrc
 "
-" and do your configuration in '~/.vim/vimrc' or '%userprofile%\vimfiles\vimrc'.
+" and do your configuration in '$HOME/.vim/vimrc' or '$HOME\vimfiles\vimrc'.
 
 " MISCELLANEOUS ADVICES
 
-" - Using short names has *only* cons and *zero* pros. Don't.
+" - Using short names has ONLY cons and ZERO pros. Don't.
 " - Learning how to use Vim's fantastic documentation is the most useful thing
 "   a Vim newcomer could do:
 "     :help :command
@@ -56,15 +72,6 @@
 "   syntax checkers on write, consult documentation, filter text through
 "   external commands, etc. Make sure you have exhausted Vim's features before
 "   installing a plugin. Any plugin.
-
-" FILES AND DIRECTORIES
-
-" Whatever you do to customize Vim, it should NEVER happen outside of '$HOME':
-"
-" - on Linux, BSD and Cygwin, '$HOME' is usually '/home/username/',
-" - on Mac OS X, '$HOME' is '/Users/username/',
-" - on Windows, '$HOME' is usually 'C:\Users\username\',
-"   same thing if you use Git for Windows.
 
 " OPTIONS
 
@@ -190,37 +197,37 @@ augroup END
 " CONDITIONALS
 
 if v:version >= 704
-    " do something if Vim is the right version
+    " Do something if Vim is the right version.
 endif
 
 if has('patch666')
-    " do something if Vim has the right patch-level
-    " see ':help has-patch'
+    " Do something if Vim has the right patch-level.
+    " See ':help has-patch'.
 endif
 
 if has('feature')
-  " do something if Vim is built with 'feature'
-  " see ':help feature-list'
+  " Do something if Vim is built with 'feature'.
+  " See ':help feature-list'.
 endif
 
 " SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
 
-" enabling filetype support provides filetype-specific indenting
-" and syntax highlighting
+" Enabling filetype support provides filetype-specific indenting
+" and syntax highlighting.
 filetype plugin indent on
 syntax on
 
-" built-in 'matchit.vim'
-" hit '%' on 'if' to jump to 'else'
+" 'matchit.vim' is built-in so let's enable it!
+" Hit '%' on 'if' to jump to 'else'.
 runtime macros/matchit.vim
 
 " various settings
-set autoindent                 " minimal automatic indenting for any filetype
-set backspace=indent,eol,start " proper backspace behavior
-set hidden                     " possibility to have more than one
-                               " unsaved buffers
-set incsearch                  " incremental search, hit '<CR>' to stop
-set ruler                      " shows the current line number at the bottom
-                               " right of the screen
-set wildmenu                   " great command-line completion, use '<Tab>' to
-                               " move around and '<CR>' to validate
+set autoindent                 " Minimal automatic indenting for any filetype
+set backspace=indent,eol,start " Proper backspace behavior
+set hidden                     " Possibility to have more than one
+                               " Unsaved buffers
+set incsearch                  " Incremental search, hit '<CR>' to stop
+set ruler                      " Shows the current line number at the bottom
+                               " Right of the screen
+set wildmenu                   " Great command-line completion, use '<Tab>' to
+                               " Move around and '<CR>' to validate
