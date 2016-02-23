@@ -14,7 +14,7 @@
 " The canonical location for your 'vimrc' and your 'vim' directory is at
 " the root of that '$HOME' directory:
 "
-"     on Unix-like systems    $HOME/vimrc
+"     on Unix-like systems    $HOME/.vimrc
 "                             $HOME/.vim/
 "     on Windows              $HOME\_vimrc
 "                             $HOME\vimfiles\
