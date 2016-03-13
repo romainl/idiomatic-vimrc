@@ -14,10 +14,12 @@
 " The canonical location for your 'vimrc' and your 'vim' directory is at
 " the root of that '$HOME' directory:
 "
-"     on Unix-like systems    $HOME/.vimrc
-"                             $HOME/.vim/
-"     on Windows              $HOME\_vimrc
-"                             $HOME\vimfiles\
+"     on Unix-like systems    $HOME/.vimrc       <-- the file
+"                             $HOME/.vim/        <-- the directory
+"     on Windows              $HOME\_vimrc       <-- the file
+"                             $HOME\vimfiles\    <-- the directory
+"
+" The layout above is guaranteed to work, now in the future.
 "
 " Vim 7.4 made it possible to keep your lovely 'vimrc' INSIDE your 'vim'
 " directory. It is really a good idea, if only because it makes it easier to
@@ -28,9 +30,9 @@
 "     on Unix-like systems    $HOME/.vim/vimrc
 "     on Windows              $HOME\vimfiles\vimrc
 "
-" If you use both 7.4 and an older version, or only an older version,
-" the simplest, future-proof, solution is to put this line and only
-" this line:
+" If you want a self-contained 'vim/' but use both 7.4 and an older version,
+" or only an older version, the simplest, future-proof, solution is to put this
+" line and only this line:
 "
 "     runtime vimrc
 "
@@ -63,7 +65,7 @@
 " - 'set t_Co=256' is a bad idea, set your terminal up properly instead.
 " - 'set paste' has a lot of side effects, don't put it in your 'vimrc'.
 " - If you have a lot of autocommands for a lot of filetype-specific settings,
-"   consider moving the setting to proper ftplugins:
+"   consider moving those settings to proper ftplugins:
 "
 "     ~/.vim/after/ftplugin/php.vim
 "
@@ -216,10 +218,14 @@ if has('feature')
   " See ':help feature-list'.
 endif
 
+" COLORS (TODO)
+
+" PLUGINS (TODO)
+
 " SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
 
 " Enabling filetype support provides filetype-specific indenting, syntax
-" highlighting and other useful settings.
+" highlighting, omni-completion and other useful settings.
 filetype plugin indent on
 syntax on
 
