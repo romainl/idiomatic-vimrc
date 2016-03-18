@@ -4,6 +4,7 @@
 " Guidelines for sculpting your very own 'vimrc'.
 
 " FILES AND DIRECTORIES
+" """""""""""""""""""""
 
 " Whatever you do to customize Vim, it should NEVER happen outside of '$HOME':
 "
@@ -44,6 +45,7 @@
 " and do your configuration in '$HOME/.vim/vimrc' or '$HOME\vimfiles\vimrc'.
 
 " MISCELLANEOUS ADVICES
+" """""""""""""""""""""
 
 " - Using short names has ONLY cons and ZERO pros. Don't.
 " - Learning how to use Vim's fantastic documentation is the most useful thing
@@ -82,6 +84,7 @@
 "   installing a plugin. Any plugin.
 
 " OPTIONS
+" """""""
 
 " There are three kinds of options:
 " - boolean options,
@@ -118,6 +121,7 @@ set numoption-=1    " 3 - 1 == 2
 set numoption^=8    " 2 * 8 == 16
 
 " MAPPINGS
+" """"""""
 
 " - Don't put comments after mappings.
 " - Use ':map <F6>' to see what is mapped to '<F6>' and in which mode.
@@ -146,6 +150,7 @@ nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
 nnoremap <key> :call SomeFunction()<CR>
 
 " VARIABLES
+" """""""""
 
 " Like most scripting languages, vimscript has variables.
 " One can define a variable with the ':let' command:
@@ -161,6 +166,7 @@ let g:plugin_variable = 1
 " Read up on the subject in ':help internal-variables'.
 
 " COMMANDS
+" """"""""
 
 " - Don't forget the bang to allow Vim to overwrite that command next time
 "   you reload your vimrc.
@@ -170,6 +176,7 @@ command! MyCommand call SomeFunction()
 command! MyOtherCommand command | Command | command
 
 " FUNCTIONS
+" """""""""
 
 " - Don't forget the bang to allow Vim to overwrite that function next time
 "   you reload your vimrc.
@@ -180,6 +187,7 @@ function! MyFunction(foo, bar)
 endfunction
 
 " AUTOCOMMANDS
+" """"""""""""
 
 " - Autocommand groups are good for organization but they can be useful
 "   for debugging too. Think of them as small namespaces that you
@@ -203,6 +211,7 @@ augroup MyGroup
 augroup END
 
 " CONDITIONALS
+" """"""""""""
 
 if v:version >= 704
     " Do something if Vim is the right version.
@@ -219,10 +228,13 @@ if has('feature')
 endif
 
 " COLORS (TODO)
+" """"""
 
 " PLUGINS (TODO)
+" """""""
 
 " SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
+" """"""""""""""""""""""""""""""""""""""""""
 
 " Enabling filetype support provides filetype-specific indenting, syntax
 " highlighting, omni-completion and other useful settings.
