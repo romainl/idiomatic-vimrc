@@ -3,7 +3,22 @@
 """""""""""""""""""
 " Guidelines for sculpting your very own 'vimrc'.
 
-" FILES AND DIRECTORIES
+" TABLE OF CONTENTS
+" """""""""""""""""
+" Files and directories ................... dirs
+" Miscellaneous advices ................... advs
+" Options ................................. opts
+" Mappings ................................ maps
+" Variables ............................... vars
+" Commands ................................ cmds
+" Functions ............................... funcs
+" Autocommands ............................ autos
+" Conditionals ............................ ifs
+" Colors (TODO) ........................... cols
+" Plugins (TODO) .......................... plugs
+" Suggested settings for programming ...... sets
+
+" FILES AND DIRECTORIES (dirs)
 " """""""""""""""""""""
 
 " Whatever you do to customize Vim, it should NEVER happen outside of '$HOME':
@@ -20,7 +35,7 @@
 "     on Windows              $HOME\_vimrc       <-- the file
 "                             $HOME\vimfiles\    <-- the directory
 "
-" The layout above is guaranteed to work, now in the future.
+" The layout above is guaranteed to always work, now and in the future.
 "
 " Vim 7.4 made it possible to keep your lovely 'vimrc' INSIDE your 'vim'
 " directory. It is really a good idea, if only because it makes it easier to
@@ -44,7 +59,7 @@
 "
 " and do your configuration in '$HOME/.vim/vimrc' or '$HOME\vimfiles\vimrc'.
 
-" MISCELLANEOUS ADVICES
+" MISCELLANEOUS ADVICES (advs)
 " """""""""""""""""""""
 
 " - Using short names has ONLY cons and ZERO pros. Don't.
@@ -83,7 +98,7 @@
 "   external commands, etc. Make sure you have exhausted Vim's features before
 "   installing a plugin. Any plugin.
 
-" OPTIONS
+" OPTIONS (opts)
 " """""""
 
 " There are three kinds of options:
@@ -120,7 +135,7 @@ set numoption+=2    " 1 + 2 == 3
 set numoption-=1    " 3 - 1 == 2
 set numoption^=8    " 2 * 8 == 16
 
-" MAPPINGS
+" MAPPINGS (maps)
 " """"""""
 
 " - Don't put comments after mappings.
@@ -149,7 +164,7 @@ nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
 " Calling a function from a mapping.
 nnoremap <key> :call SomeFunction()<CR>
 
-" VARIABLES
+" VARIABLES (vars)
 " """""""""
 
 " Like most scripting languages, vimscript has variables.
@@ -165,7 +180,7 @@ let g:plugin_variable = 1
 
 " Read up on the subject in ':help internal-variables'.
 
-" COMMANDS
+" COMMANDS (cmds)
 " """"""""
 
 " - Don't forget the bang to allow Vim to overwrite that command next time
@@ -175,7 +190,7 @@ let g:plugin_variable = 1
 command! MyCommand call SomeFunction()
 command! MyOtherCommand command | Command | command
 
-" FUNCTIONS
+" FUNCTIONS (funcs)
 " """""""""
 
 " - Don't forget the bang to allow Vim to overwrite that function next time
@@ -186,7 +201,7 @@ function! MyFunction(foo, bar)
   return a:foo . a:bar
 endfunction
 
-" AUTOCOMMANDS
+" AUTOCOMMANDS (autos)
 " """"""""""""
 
 " - Autocommand groups are good for organization but they can be useful
@@ -210,7 +225,7 @@ augroup MyGroup
   autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
 augroup END
 
-" CONDITIONALS
+" CONDITIONALS (ifs)
 " """"""""""""
 
 if v:version >= 704
@@ -227,13 +242,27 @@ if has('feature')
   " See ':help feature-list'.
 endif
 
-" COLORS (TODO)
+" COLORS (cols) (TODO)
 " """"""
 
-" PLUGINS (TODO)
+" GVim and MacVim can display millions of colors.
+" In a shell, Vim is limited by the capabilities
+
+" PLUGINS (plugs) (TODO)
 " """""""
 
-" SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
+" Vim does a lot but we can count on its striving plugin ecosystem for when
+" that's not enough. Vim plugins are to be installed in:
+"
+"     on Unix-like systems    $HOME/.vim/
+"     on Windows              $HOME\vimfiles\
+"
+" Well designed plugins usually mimic Vim's own runtime directory's structure:
+" - filetype-specific scripts are named after their filetype and go into ftplugin/
+" - indent scripts are named after their filetype and go into indent/
+" - syntax scripts are named after their filetype and go into syntax/
+
+" SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING (sets)
 " """"""""""""""""""""""""""""""""""""""""""
 
 " Enabling filetype support provides filetype-specific indenting, syntax
