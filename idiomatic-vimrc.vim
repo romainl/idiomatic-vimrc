@@ -3,6 +3,8 @@
 """""""""""""""""""
 " Guidelines for sculpting your very own 'vimrc'.
 
+
+
 " TABLE OF CONTENTS
 " """""""""""""""""
 " Files and directories ................... dirs
@@ -17,6 +19,8 @@
 " Colors (TODO) ........................... cols
 " Plugins (TODO) .......................... plugs
 " Suggested settings for programming ...... sets
+
+
 
 " FILES AND DIRECTORIES (dirs)
 " """""""""""""""""""""
@@ -59,6 +63,8 @@
 "
 " and do your configuration in '$HOME/.vim/vimrc' or '$HOME\vimfiles\vimrc'.
 
+
+
 " MISCELLANEOUS ADVICES (advs)
 " """""""""""""""""""""
 
@@ -98,14 +104,19 @@
 "   external commands, etc. Make sure you have exhausted Vim's features before
 "   installing a plugin. Any plugin.
 
+
+
 " OPTIONS (opts)
 " """""""
 
 " There are three kinds of options:
+"
 " - boolean options,
 " - string options,
 " - number options.
+"
 " Checking the value of an option:
+"
 " - use ':set option?' to check the value of an option,
 " - use ':verbose set option?' to also see where it was last set.
 
@@ -135,6 +146,8 @@ set numoption+=2    " 1 + 2 == 3
 set numoption-=1    " 3 - 1 == 2
 set numoption^=8    " 2 * 8 == 16
 
+
+
 " MAPPINGS (maps)
 " """"""""
 
@@ -144,7 +157,7 @@ set numoption^=8    " 2 * 8 == 16
 " - See ':help key-notation'.
 " - ':map' and ':map!' are too generic. Use ':n*' for normal mode mappings,
 "   ':i*' for insert mode, ':x*' for visual mode, etc.
-"   See ':help map-commands'.
+" - See ':help map-commands'.
 
 " Use non-recursive mappings ONLY if you intend to use default commands in
 " your mappings, which is almost always what you want.
@@ -164,6 +177,8 @@ nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
 " Calling a function from a mapping.
 nnoremap <key> :call SomeFunction()<CR>
 
+
+
 " VARIABLES (vars)
 " """""""""
 
@@ -180,6 +195,8 @@ let g:plugin_variable = 1
 
 " Read up on the subject in ':help internal-variables'.
 
+
+
 " COMMANDS (cmds)
 " """"""""
 
@@ -189,6 +206,8 @@ let g:plugin_variable = 1
 " - See ':help user-commands'.
 command! MyCommand call SomeFunction()
 command! MyOtherCommand command | Command | command
+
+
 
 " FUNCTIONS (funcs)
 " """""""""
@@ -200,6 +219,8 @@ command! MyOtherCommand command | Command | command
 function! MyFunction(foo, bar)
   return a:foo . a:bar
 endfunction
+
+
 
 " AUTOCOMMANDS (autos)
 " """"""""""""
@@ -225,6 +246,8 @@ augroup MyGroup
   autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
 augroup END
 
+
+
 " CONDITIONALS (ifs)
 " """"""""""""
 
@@ -242,25 +265,61 @@ if has('feature')
   " See ':help feature-list'.
 endif
 
+
+
 " COLORS (cols) (TODO)
 " """"""
 
-" GVim and MacVim can display millions of colors.
-" In a shell, Vim is limited by the capabilities
+" - GVim and MacVim (GUI Vim) can display millions of colors.
+" - CLI Vim is limited by the capabilities of your shell and terminal
+"   emulator.
+" - GUI-specific colorschemes can't be expected to work in CLI Vim.
+" - CLI-specific colorschemes can't be expected to work in GUI Vim.
+" - To determine if a pretty colorscheme is right for your environment, Look
+"   for 'guibg' (means GUI support) and 'ctermbg' (means CLI support).
+
+
 
 " PLUGINS (plugs) (TODO)
 " """""""
 
 " Vim does a lot but we can count on its striving plugin ecosystem for when
-" that's not enough. Vim plugins are to be installed in:
+" the built-in features are not enough. Look for plugins that:
+"
+" - follow Vim's philosophy
+" - don't duplicate built-in features
+" - let you (re)define their mappings
+" - don't have crazy requirements
+
+" No one absolutely needs a plugin manager.
+
+" Vim plugins are to be installed in:
 "
 "     on Unix-like systems    $HOME/.vim/
 "     on Windows              $HOME\vimfiles\
 "
+" and nowhere else.
+
 " Well designed plugins usually mimic Vim's own runtime directory's structure:
+"
 " - filetype-specific scripts are named after their filetype and go into ftplugin/
-" - indent scripts are named after their filetype and go into indent/
-" - syntax scripts are named after their filetype and go into syntax/
+"
+"       ftplugin/javascript.vim
+"
+" - filetype-specific indent scripts are named after their filetype and go into indent/
+"
+"       indent/javascript.vim
+"
+" - filetype-specific syntax scripts are named after their filetype and go into syntax/
+"
+"       syntax/javascript.vim
+"
+" - generic scripts don't have to be named in any specific way but they belong
+"   to plugin/
+"
+"       plugin/foo.vim
+
+
 
 " SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING (sets)
 " """"""""""""""""""""""""""""""""""""""""""
