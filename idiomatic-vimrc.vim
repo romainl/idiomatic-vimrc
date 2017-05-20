@@ -5,7 +5,7 @@
 
 
 
-" TABLE OF CONTENTS
+" TABLE OF CONTENTS (toc)
 " """""""""""""""""
 " Files and directories ................... dirs
 " Miscellaneous advices ................... advs
@@ -17,7 +17,7 @@
 " Autocommands ............................ autos
 " Conditionals ............................ ifs
 " Colors (TODO) ........................... cols
-" Plugins (TODO) .......................... plugs
+" Plugins ................................. plugs
 " Suggested settings for programming ...... sets
 
 
@@ -27,7 +27,7 @@
 
 " Whatever you do to customize Vim, it should NEVER happen outside of '$HOME':
 "
-" - on Linux, BSD and Cygwin, '$HOME' is usually '/home/username/',
+" - on Linux, BSD, and Cygwin, '$HOME' is usually '/home/username/',
 " - on Mac OS X, '$HOME' is '/Users/username/',
 " - on Windows, '$HOME' is usually 'C:\Users\username\'.
 
@@ -45,14 +45,14 @@
 " directory. It is really a good idea, if only because it makes it easier to
 " move your config around.
 "
-" If you use 7.4 exclusively, the following will be enough:
+" If you use 7.4 or above exclusively, the following will be enough:
 "
 "     on Unix-like systems    $HOME/.vim/vimrc
 "     on Windows              $HOME\vimfiles\vimrc
 "
-" If you want a self-contained 'vim/' but use both 7.4 and an older version,
-" or only an older version, the simplest, future-proof, solution is to put this
-" line and only this line:
+" If you want a self-contained 'vim/' but use both 7.4 or above and an older
+" version, or only an older version, the simplest, future-proof, solution is
+" to put this line and only this line:
 "
 "     runtime vimrc
 "
@@ -280,7 +280,7 @@ endif
 
 
 
-" PLUGINS (plugs) (TODO)
+" PLUGINS (plugs)
 " """""""
 
 " Vim does a lot but we can count on its striving plugin ecosystem for when
@@ -291,14 +291,12 @@ endif
 " - let you (re)define their mappings
 " - don't have crazy requirements
 
-" No one absolutely needs a plugin manager.
-
 " Vim plugins are to be installed in:
 "
 "     on Unix-like systems    $HOME/.vim/
 "     on Windows              $HOME\vimfiles\
 "
-" and nowhere else.
+" and NOWHERE else.
 
 " Well designed plugins usually mimic Vim's own runtime directory's structure:
 "
@@ -314,10 +312,21 @@ endif
 "
 "       syntax/javascript.vim
 "
-" - generic scripts don't have to be named in any specific way but they belong
-"   to plugin/
+" - autoloaded scripts go into autoload/
+"
+"       autoload/foo.vim
+"
+" - plugin scripts go into plugin/
 "
 "       plugin/foo.vim
+"
+" - plugin documentation goes into doc/
+"
+"       doc/foo.txt
+
+" No one absolutely needs a plugin manager but if you think you do, make sure
+" you read and understand the plugin manager of your choice's README before
+" using it.
 
 
 
