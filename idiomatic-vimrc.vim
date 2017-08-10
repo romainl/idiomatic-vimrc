@@ -41,11 +41,12 @@
 "
 " The layout above is guaranteed to always work, now and in the future.
 "
-" Vim 7.4 made it possible to keep your lovely 'vimrc' INSIDE your 'vim'
+" Since Vim 7.4 it is possible to keep your lovely 'vimrc' INSIDE your 'vim'
 " directory. It is really a good idea, if only because it makes it easier to
 " move your config around.
 "
-" If you use 7.4 or above exclusively, the following will be enough:
+" If you use 7.4 or above exclusively, the following gives you a portable
+" setup:
 "
 "     on Unix-like systems    $HOME/.vim/vimrc
 "     on Windows              $HOME\vimfiles\vimrc
@@ -86,13 +87,13 @@
 "   expected location.
 " - 'set background=dark' doesn't do what you think it does.
 " - 'set t_Co=256' is a bad idea, set your terminal up properly instead.
-" - 'set paste' has a lot of side effects, don't put it in your 'vimrc'.
-" - If you have a lot of autocommands for a lot of filetype-specific settings,
+" - 'set paste' has a lot of nasty side effects, don't put it in your 'vimrc'.
+" - If you have many autocommands for many filetype-specific settings,
 "   consider moving those settings to proper ftplugins:
 "
 "     ~/.vim/after/ftplugin/php.vim
 "
-" - If you have a lot of custom functions, consider moving them
+" - If you have many custom functions, consider moving them
 "   to the 'autoload/' directory. See ':help autoload':
 "
 "     ~/.vim/autoload/myfunctions.vim
