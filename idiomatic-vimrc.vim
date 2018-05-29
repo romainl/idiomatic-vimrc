@@ -160,7 +160,7 @@ set numoption^=8    " 2 * 8 == 16
 "   ':i*' for insert mode, ':x*' for visual mode, etc.
 " - See ':help map-commands'.
 
-" Use non-recursive mappings ONLY if you intend to use default commands in
+" Use non-recursive mappings if you intend to use ONLY default commands in
 " your mappings, which is almost always what you want.
 nnoremap <key> yyp
 
