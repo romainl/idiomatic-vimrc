@@ -75,14 +75,14 @@ and do your configuration in `$HOME/.vim/vimrc` or `$HOME\vimfiles\vimrc`.
 - Using short names has ONLY cons and ZERO pros. Don't.
 - Learning how to use Vim's fantastic documentation is the most useful thing a Vim newcomer could do:
 
-    :help :command
-    :help function()
-    :help 'option'
-    :help i_ctrl-a
-    :helpgrep foo
-    :help get<C-d>
-    <C-]> on an highlighted tag to jump to the corresponding entry
-    <C-t> to come back
+      :help :command
+      :help function()
+      :help 'option'
+      :help i_ctrl-a
+      :helpgrep foo
+      :help get<C-d>
+      <C-]> on an highlighted tag to jump to the corresponding entry
+      <C-t> to come back
 
 - Always refer to the relevant `:help` before adding anything to your vimrc.
 - You don't need `set nocompatible` if you have a custom `vimrc` at the expected location.
@@ -91,12 +91,12 @@ and do your configuration in `$HOME/.vim/vimrc` or `$HOME\vimfiles\vimrc`.
 - `set paste` has a lot of nasty side effects, don't put it in your `vimrc`.
 - If you have many autocommands for many filetype-specific settings, consider moving those settings to proper ftplugins:
 
-        ~/.vim/after/ftplugin/php.vim
+      ~/.vim/after/ftplugin/php.vim
 
 - If you have many custom functions, consider moving them to the `autoload/` directory. See `:help autoload`:
 
-        ~/.vim/autoload/myfunctions.vim
-        call myfunctions#foo()
+      ~/.vim/autoload/myfunctions.vim
+      call myfunctions#foo()
 
 - Vim already gives you the ability to browse local and remote filesystems, integrate `ack` or `ag`, navigate, complete and compile your code, run syntax checkers on write, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
 
@@ -204,6 +204,8 @@ Read up on the subject in `:help internal-variables`.
 - Custom commands must start with an uppercase character.
 - See `:help user-commands`.
 
+Examples:
+
     command! MyCommand call SomeFunction()
     command! MyOtherCommand command | Command | command
 
@@ -215,6 +217,8 @@ Read up on the subject in `:help internal-variables`.
 - Custom functions must start with an uppercase character.
 - See `:help user-functions`.
 
+Example:
+
     function! MyFunction(foo, bar)
       return a:foo . a:bar
     endfunction
@@ -225,6 +229,8 @@ Read up on the subject in `:help internal-variables`.
 
 - Autocommand groups are good for organization but they can be useful for debugging too. Think of them as small namespaces that you can enable/disable at will.
 - See `:help autocommand`.
+
+Example:
 
     augroup MyGroup
       " Clear the autocmds of the current group to prevent them from piling
@@ -247,18 +253,23 @@ Read up on the subject in `:help internal-variables`.
 
 ## CONDITIONALS
 
+Do something if Vim is the right version:
+
+
     if v:version >= 704
-      " Do something if Vim is the right version.
+      " see :help v:version
     endif
+
+Do something if Vim has the right patch-level:
 
     if has('patch666')
-      " Do something if Vim has the right patch-level.
-      " See `:help has-patch`.
+      " see :help has-patch
     endif
 
+Do something if Vim is built with `feature`:
+
     if has('feature')
-      " Do something if Vim is built with `feature`.
-      " See `:help feature-list`.
+      " see :help feature-list
     endif
 
 
@@ -294,27 +305,27 @@ Well designed plugins usually mimic Vim's own runtime directory's structure:
 
 - filetype-specific scripts are named after their filetype and go into ftplugin/
 
-        ftplugin/javascript.vim
+      ftplugin/javascript.vim
 
 - filetype-specific indent scripts are named after their filetype and go into indent/
 
-        indent/javascript.vim
+      indent/javascript.vim
 
 - filetype-specific syntax scripts are named after their filetype and go into syntax/
 
-        syntax/javascript.vim
+      syntax/javascript.vim
 
 - autoloaded scripts go into autoload/
 
-        autoload/foo.vim
+      autoload/foo.vim
 
 - plugin scripts go into plugin/
 
-        plugin/foo.vim
+      plugin/foo.vim
 
 - plugin documentation goes into doc/
 
-        doc/foo.txt
+      doc/foo.txt
 
 No one absolutely needs a plugin manager but if you think you do, make sure you read and understand the plugin manager of your choice's README before using it.
 
