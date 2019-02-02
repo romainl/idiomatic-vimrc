@@ -6,18 +6,18 @@ Guidelines for sculpting your very own `vimrc`.
 
 Table of contents
 
-* Files and directories
-* Miscellaneous advices
-* Options
-* Mappings
-* Variables
-* Commands
-* Functions
-* Autocommands
-* Conditionals
-* Colors (WIP)
-* Plugins (WIP)
-* Suggested settings for programming
+* [Files and directories](#files-and-directories)
+* [Miscellaneous advices](#miscellaneous-advices)
+* [Options](#options)
+* [Mappings](#mappings)
+* [Variables](#variables)
+* [Commands](#commands)
+* [Functions](#functions)
+* [Autocommands](#autocommands)
+* [Conditionals](#conditionals)
+* [Colors (WIP)](#colors-wip)
+* [Plugins (WIP)](#plugins-wip)
+* [Suggested settings for programming](#suggested-settings-for-programming)
 
 
 
@@ -81,12 +81,12 @@ and do your configuration in `$HOME/.vim/vimrc` or `$HOME\vimfiles\vimrc`.
 - `set paste` has a lot of nasty side effects, don't put it in your `vimrc`.
 - If you have many autocommands for many filetype-specific settings, consider moving those settings to proper ftplugins:
 
-    ~/.vim/after/ftplugin/php.vim
+        ~/.vim/after/ftplugin/php.vim
 
 - If you have many custom functions, consider moving them to the `autoload/` directory. See `:help autoload`:
 
-    ~/.vim/autoload/myfunctions.vim
-    call myfunctions#foo()
+        ~/.vim/autoload/myfunctions.vim
+        call myfunctions#foo()
 
 - Vim already gives you the ability to browse local and remote filesystems, integrate `ack` or `ag`, navigate, complete and compile your code, run syntax checkers on write, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
 
@@ -105,7 +105,7 @@ Checking the value of an option:
 - use `:set option?` to check the value of an option,
 - use `:verbose set option?` to also see where it was last set.
 
-Setting boolean options.
+Setting boolean options:
 
     set booloption      " Set booloption.
     set nobooloption    " Unset booloption.
@@ -114,7 +114,7 @@ Setting boolean options.
 
     set booloption&     " Reset booloption to its default value.
 
-Setting string options.
+Setting string options:
 
     set stroption=baz   " baz
 
@@ -126,7 +126,7 @@ Setting string options.
 
     set stroption&      " Reset stroption to its default value.
 
-Setting number options.
+Setting number options:
 
     set numoption=1     " 1
 
@@ -145,25 +145,24 @@ Setting number options.
 - `:map` and `:map!` are too generic. Use `:n*` for normal mode mappings, `:i*` for insert mode, `:x*` for visual mode, etc.
 - See `:help map-commands`.
 
-Use non-recursive mappings ONLY if you intend to use default commands in your mappings, which is almost always what you want.
+Use non-recursive mappings ONLY if you intend to use default commands in your mappings, which is almost always what you want:
 
     nnoremap <key> yyp
 
-Use recursive mappings ONLY if you intend to use other mappings
-in your mappings.
+Use recursive mappings ONLY if you intend to use other mappings in your mappings:
 
     nnoremap b     B
     nmap     <key> db
 
-Executing a command from a mapping.
+Executing a command from a mapping:
 
     nnoremap <key> :MyCommand<CR>
 
-Executing multiple commands from a mapping.
+Executing multiple commands from a mapping:
 
     nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
 
-Calling a function from a mapping.
+Calling a function from a mapping:
 
     nnoremap <key> :call SomeFunction()<CR>
 
