@@ -41,10 +41,10 @@ Whatever you do to customize Vim, it should NEVER happen outside of `$HOME`:
 
 The canonical location for your `vimrc` and your runtime directory is at the root of that `$HOME` directory:
 
-Unix-like | Windows
----|---
-`$HOME/.vimrc` | `$HOME\_vimrc`
-`$HOME/.vim/`  | `$HOME\vimfiles\`
+System | `vimrc` | Runtime directory
+---|---|---
+UNIX-like | `$HOME/.vimrc` | `$HOME/.vim/`
+Windows | `$HOME\_vimrc` | `$HOME\vimfiles\`
 
 The layout above is guaranteed to always work, now and in the future.
 
@@ -52,9 +52,10 @@ Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vim` direc
 
 If you use 7.4 or above exclusively, the following gives you a portable setup:
 
-Unix-like | Windows
+System | Location
 ---|---
-`$HOME/.vim/vimrc` | `$HOME\vimfiles\vimrc`
+UNIX-like | `$HOME/.vim/vimrc`
+Windows | `$HOME\vimfiles\vimrc`
 
 If you want a self-contained `vim/` but use both 7.4 or above and an older version, or only an older version, the simplest, future-proof, solution is to put this line and only this line:
 
@@ -62,9 +63,10 @@ If you want a self-contained `vim/` but use both 7.4 or above and an older versi
 
 in this file:
 
-Unix-like | Windows
+System | Location
 ---|---
-`$HOME/.vimrc` | `$HOME\_vimrc`
+UNIX-like | `$HOME/.vimrc`
+Windows | `$HOME\_vimrc`
 
 and do your configuration in `$HOME/.vim/vimrc` or `$HOME\vimfiles\vimrc`.
 
@@ -152,7 +154,7 @@ Setting number options:
 - Use `:map <F6>` to see what is mapped to `<F6>` and in which mode.
 - Use `:verbose map <F6>` to also see where it was last mapped.
 - See `:help key-notation`.
-- `:map` and `:map!` are too generic. Use `:n*` for normal mode mappings, `:i*` for insert mode, `:x*` for visual mode, etc.
+- `:map` and `:map!` are too generic. Use `:nmap` for normal mode recursive mappings, `:imap` for insert mode, `:xmap` for visual mode, etc.
 - See `:help map-commands`.
 
 Use non-recursive mappings ONLY if you intend to use default commands in your mappings, which is almost always what you want:
@@ -255,7 +257,6 @@ Example:
 
 Do something if Vim is the right version:
 
-
     if v:version >= 704
       " see :help v:version
     endif
@@ -295,9 +296,10 @@ Vim does a lot but we can count on its striving plugin ecosystem for when the bu
 
 Vim plugins are to be installed in:
 
-On Unix-like systems | On Windows
+System | Location
 ---|---
-`$HOME/.vim/` | `$HOME\vimfiles\`
+UNIX-like | `$HOME/.vim/`
+Windows | `$HOME\vimfiles\`
 
 and **NOWHERE** else.
 
