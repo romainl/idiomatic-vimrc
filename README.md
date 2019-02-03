@@ -14,7 +14,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 
 
 
-Table of contents
+## TABLE OF CONTENTS
 
 * [Files and directories](#files-and-directories)
 * [Miscellaneous advices](#miscellaneous-advices)
@@ -39,9 +39,9 @@ Whatever you do to customize Vim, it should NEVER happen outside of `$HOME`:
 - on Mac OS X, `$HOME` is `/Users/username/`,
 - on Windows, `$HOME` is usually `C:\Users\username\`.
 
-The canonical location for your `vimrc` and your `vim` directory is at the root of that `$HOME` directory:
+The canonical location for your `vimrc` and your runtime directory is at the root of that `$HOME` directory:
 
-On Unix-like systems | On Windows
+Unix-like | Windows
 ---|---
 `$HOME/.vimrc` | `$HOME\_vimrc`
 `$HOME/.vim/`  | `$HOME\vimfiles\`
@@ -52,7 +52,7 @@ Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vim` direc
 
 If you use 7.4 or above exclusively, the following gives you a portable setup:
 
-On Unix-like systems | On Windows
+Unix-like | Windows
 ---|---
 `$HOME/.vim/vimrc` | `$HOME\vimfiles\vimrc`
 
@@ -62,7 +62,7 @@ If you want a self-contained `vim/` but use both 7.4 or above and an older versi
 
 in this file:
 
-On Unix-like systems | On Windows
+Unix-like | Windows
 ---|---
 `$HOME/.vimrc` | `$HOME\_vimrc`
 
