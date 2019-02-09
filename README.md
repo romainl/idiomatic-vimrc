@@ -305,27 +305,27 @@ and **NOWHERE** else.
 
 Well designed plugins usually mimic Vim's own runtime directory's structure:
 
-- filetype-specific scripts are named after their filetype and go into ftplugin/
+- filetype-specific scripts are named after their filetype and go into `ftplugin/`
 
       ftplugin/javascript.vim
 
-- filetype-specific indent scripts are named after their filetype and go into indent/
+- filetype-specific indent scripts are named after their filetype and go into `indent/`
 
       indent/javascript.vim
 
-- filetype-specific syntax scripts are named after their filetype and go into syntax/
+- filetype-specific syntax scripts are named after their filetype and go into `syntax/`
 
       syntax/javascript.vim
 
-- autoloaded scripts go into autoload/
+- autoloaded scripts go into `autoload/`
 
       autoload/foo.vim
 
-- plugin scripts go into plugin/
+- plugin scripts go into `plugin/`
 
       plugin/foo.vim
 
-- plugin documentation goes into doc/
+- plugin documentation goes into `doc/`
 
       doc/foo.txt
 
