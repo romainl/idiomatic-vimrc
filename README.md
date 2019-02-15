@@ -72,7 +72,7 @@ and do your configuration in `$HOME/.vim/vimrc` or `$HOME\vimfiles\vimrc`.
 
 
 
-## MISCELLANEOUS ADVICES
+## MISCELLANEOUS ADVICE
 
 - Using short names has ONLY cons and ZERO pros. Don't.
 - Learning how to use Vim's fantastic documentation is the most useful thing a Vim newcomer could do:
@@ -287,7 +287,7 @@ Do something if Vim is built with `feature`:
 
 ## PLUGINS (WIP)
 
-Vim does a lot but we can count on its striving plugin ecosystem for when the built-in features are not enough. Look for plugins that:
+Vim does a lot but we can count on its thriving plugin ecosystem for when the built-in features are not enough. Look for plugins that:
 
 - follow Vim's philosophy
 - don't duplicate built-in features
