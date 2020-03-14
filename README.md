@@ -6,7 +6,7 @@ Unlike the many so-called "distributions", "templates" or "awesome `vimrc`" you 
 
 The purpose of this repository is to document battle-tested best practices regarding Vim configuration. Use it as a reference, not as a starting point.
 
-Furthermore, a `vimrc` is something personal, that grows, shrinks and evolves over time, as you increase your Vim-fu and your needs change. While looking at other people's `vimrc` can certainly be an interesting exercise, one should refrain himself from looking for solutions to non-existing problems.
+Furthermore, a `vimrc` is something personal, that grows, shrinks and evolves over time, as you increase your Vim-fu and your needs change. While looking at other people's `vimrc` can certainly be an interesting exercise, one should refrain from looking for solutions to non-existing problems.
 
 Remember, kids... **Pandajail** is where pandas are sent when you use someone else's `vimrc`. Don't be the vimmer responsible for this:
 
@@ -33,22 +33,22 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 
 ## FILES AND DIRECTORIES
 
-Whatever you do to customize Vim, it should NEVER happen outside of `$HOME`:
+Unless you *really* know what you are doing, whatever you do to customize Vim should NEVER happen outside of `$HOME`:
 
 - on Linux, BSD, and Cygwin, `$HOME` is usually `/home/username/`,
 - on Mac OS X, `$HOME` is `/Users/username/`,
 - on Windows, `$HOME` is usually `C:\Users\username\`.
 
-The canonical location for your `vimrc` and your runtime directory is at the root of that `$HOME` directory:
+Customizing Vim usually involves editing its main configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
 
-System | `vimrc` | Runtime directory
+The canonical location for your `vimrc` file and `vimfiles` directory is at the root of the `$HOME` directory mentioned earlier:
+
+System | `vimrc` | `vimfiles`
 ---|---|---
 UNIX-like | `$HOME/.vimrc` | `$HOME/.vim/`
 Windows | `$HOME\_vimrc` | `$HOME\vimfiles\`
 
-The layout above is guaranteed to always work, now and in the future.
-
-Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vim` directory. It is really a good idea, if only because it makes it easier to move your config around.
+Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vimfiles`. It is really a good idea, if only because it makes it easier to move your config around.
 
 If you use 7.4 or above exclusively, the following gives you a portable setup:
 
@@ -57,7 +57,7 @@ System | Location
 UNIX-like | `$HOME/.vim/vimrc`
 Windows | `$HOME\vimfiles\vimrc`
 
-If you want a self-contained `vim/` but use both 7.4 or above and an older version, or only an older version, the simplest, future-proof, solution is to put this line and only this line:
+If you want a self-contained `vimfiles` but use both 7.4 or above and an older version, or only an older version, the simplest, future-proof, solution is to put this line and only this line:
 
     runtime vimrc
 
@@ -86,12 +86,12 @@ and do your configuration in `$HOME/.vim/vimrc` or `$HOME\vimfiles\vimrc`.
       <C-]> on an highlighted tag to jump to the corresponding entry
       <C-t> to come back
 
-- Always refer to the relevant `:help` before adding anything to your vimrc.
+- Always refer to the relevant `:help` before adding anything to your `vimrc`.
 - You don't need `set nocompatible` if you have a custom `vimrc` at the expected location.
 - `set background=dark` doesn't do what you think it does.
 - `set t_Co=256` is a bad idea, set your terminal up properly instead.
 - `set paste` has a lot of nasty side effects, don't put it in your `vimrc`.
-- If you have many autocommands for many filetype-specific settings, consider moving those settings to proper ftplugins:
+- If you have many autocommands for many filetype-specific settings, consider moving those settings to proper filetype plugins:
 
       ~/.vim/after/ftplugin/php.vim
 
@@ -100,7 +100,7 @@ and do your configuration in `$HOME/.vim/vimrc` or `$HOME\vimfiles\vimrc`.
       ~/.vim/autoload/myfunctions.vim
       call myfunctions#foo()
 
-- Vim already gives you the ability to browse local and remote filesystems, integrate `ack` or `ag`, navigate, complete and compile your code, run syntax checkers on write, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
+- Vim already gives you the ability to browse local and remote file systems, integrate `ack` or `ag` or `rg`, navigate, complete and compile your code, run syntax checkers on write, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
 
 
 
@@ -117,7 +117,7 @@ Checking the value of an option:
 - use `:set option?` to check the value of an option,
 - use `:verbose set option?` to also see where it was last set.
 
-Setting boolean options:
+Setting boolean options (`booloption` is not a real option):
 
     set booloption      " Set booloption.
     set nobooloption    " Unset booloption.
@@ -126,7 +126,7 @@ Setting boolean options:
 
     set booloption&     " Reset booloption to its default value.
 
-Setting string options:
+Setting string options (`stroption` is not a real option):
 
     set stroption=baz   " baz
 
@@ -138,19 +138,19 @@ Setting string options:
 
     set stroption&      " Reset stroption to its default value.
 
-Setting number options:
+Setting number options (`numoption` is not a real option):
 
     set numoption=1     " 1
 
-    set numoption+=2    " 1 + 2 == 3
-    set numoption-=1    " 3 - 1 == 2
-    set numoption^=8    " 2 * 8 == 16
+    set numoption+=2    " 1 + 2 = 3
+    set numoption-=1    " 3 - 1 = 2
+    set numoption^=8    " 2 * 8 = 16
 
 
 
 ## MAPPINGS
 
-- Don't put comments after mappings.
+- Don't put comments after mappings, it won't work.
 - Use `:map <F6>` to see what is mapped to `<F6>` and in which mode.
 - Use `:verbose map <F6>` to also see where it was last mapped.
 - See `:help key-notation`.
@@ -202,7 +202,7 @@ Read up on the subject in `:help internal-variables`.
 
 ## CUSTOM COMMANDS
 
-- Don't forget the bang to allow Vim to overwrite that command next time you reload your vimrc.
+- Don't forget the bang to allow Vim to overwrite that command next time you reload your `vimrc`.
 - Custom commands must start with an uppercase character.
 - See `:help user-commands`.
 
@@ -215,13 +215,14 @@ Examples:
 
 ## CUSTOM FUNCTIONS
 
-- Don't forget the bang to allow Vim to overwrite that function next time you reload your vimrc.
+- Don't forget the bang to allow Vim to overwrite that function next time you reload your `vimrc`.
+- Don't forget the `abort` to let your function abort early in case of errors.
 - Custom functions must start with an uppercase character.
 - See `:help user-functions`.
 
 Example:
 
-    function! MyFunction(foo, bar)
+    function! MyFunction(foo, bar) abort
       return a:foo . a:bar
     endfunction
 
@@ -235,11 +236,11 @@ Example:
 Example:
 
     augroup MyGroup
-      " Clear the autocmds of the current group to prevent them from piling
+      " Clear the autocommands of the current group to prevent them from piling
       " up each time you reload your vimrc.
       autocmd!
 
-      " These autocmds are fired after the filetype of a buffer is defined to
+      " These autocommands are fired after the filetype of a buffer is defined to
       " `foo`. Don't forget to use `setlocal` (for options) and `<buffer>`
       " (for mappings) to prevent your settings to leak in other buffers with
       " a different filetype.
@@ -250,6 +251,16 @@ Example:
       " a buffer tied to a file in /`path/to/project/**/`.
       autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
     augroup END
+
+Alternative strategy:
+
+    " Put an empty, self-clearing group somewhere near the top of your vimrc
+    augroup MyGroup
+      autocmd!
+    augroup END
+
+    " Add autocommands to that group from anywhere
+    autocmd MyGroup BufNew,BufEnter /path/to/project/**/* call MyFunction()
 
 
 
@@ -285,25 +296,18 @@ Do something if Vim is built with `feature`:
 
 
 
-## PLUGINS (WIP)
+## PLUGINS
 
 Vim does a lot but we can count on its thriving plugin ecosystem for when the built-in features are not enough. Look for plugins that:
 
-- follow Vim's philosophy
-- don't duplicate built-in features
-- let you (re)define their mappings
-- don't have crazy requirements
+- follow Vim's philosophy,
+- don't duplicate built-in features,
+- let you (re)define their mappings,
+- don't have crazy requirements.
 
-Vim plugins are to be installed in:
+Vim plugins are to be installed in your `vimfiles` directory and **NOWHERE** else.
 
-System | Location
----|---
-UNIX-like | `$HOME/.vim/`
-Windows | `$HOME\vimfiles\`
-
-and **NOWHERE** else.
-
-Well designed plugins usually mimic Vim's own runtime directory's structure:
+Properly designed plugins usually follow Vim's own runtime directory's structure:
 
 - filetype-specific scripts are named after their filetype and go into `ftplugin/`
 
@@ -329,7 +333,29 @@ Well designed plugins usually mimic Vim's own runtime directory's structure:
 
       doc/foo.txt
 
-No one absolutely needs a plugin manager but if you think you do, make sure you read and understand the plugin manager of your choice's README before using it.
+Until Vim 8, the normal method for installing plugins was to put every file in its corresponding directory. It was messy and the more plugins you added the messier your `vimfiles` would get.
+
+To solve that problem, a number of what people call "plugin managers" appeared, all more or less built around the same logic: each plugin is kept in its own directory under a common parent directory and Vim is told where to find those plugins.
+
+Using a plugin manager is not an absolute requirement, though, but if you think you need one, make sure you read and understand the plugin manager of your choice's README before using it.
+
+### Vim 8's "package" feature
+
+Vim 8 introduced a new scheme called *package* that lets you organise your plugins in so-called "packages" and decide whether they are to be enabled at startup or manually:
+
+Directory | Description
+---|---
+`pack/{arbitrary name}/start/` | Plugins in this directory are enabled automatically at startup
+`pack/{arbitrary name}/opt/` | Plugins in this directory are enabled manually
+
+For example, here is my setup:
+
+* `pack/bundle/start/` is where I put all my "quality of life" plugins,
+* `pack/lang/start/` is where I put all my "language support" plugins.
+
+While that feature is a clear improvement, it is still not an actual plugin manager and you *may* still have to use one if you need one.
+
+See `:help package`.
 
 
 
@@ -353,3 +379,7 @@ No one absolutely needs a plugin manager but if you think you do, make sure you 
                                    " of the screen.
     set wildmenu                   " Great command-line completion, use `<Tab>` to move
                                    " around and `<CR>` to validate.
+
+
+
+[//]: # ( Vim: set spell spelllang=en: )
