@@ -333,11 +333,11 @@ Properly designed plugins usually follow Vim's own runtime directory's structure
 
       doc/foo.txt
 
-Until Vim 8, the normal method for installing plugins was to put every file in its corresponding directory. It was messy and the more plugins you added the messier your `vimfiles` would get.
+Historically, the normal method for installing plugins was to put each file in its corresponding directory. It was messy and the more plugins you added the messier your `vimfiles` would get.
 
 To solve that problem, a number of what people call "plugin managers" appeared, all more or less built around the same logic: each plugin is kept in its own directory under a common parent directory and Vim is told where to find those plugins.
 
-Using a plugin manager is not an absolute requirement, though, but if you think you need one, make sure you read and understand the plugin manager of your choice's README before using it.
+Using a plugin manager is not an absolute requirement, after all, the traditional way was messy but workable, but if you think you need one, make sure you read and understand the plugin manager of your choice's README before using it.
 
 ### Vim 8's "package" feature
 
