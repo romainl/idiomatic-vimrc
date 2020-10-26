@@ -17,7 +17,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 ## TABLE OF CONTENTS
 
 * [Files and directories](#files-and-directories)
-* [Miscellaneous advices](#miscellaneous-advices)
+* [Miscellaneous advice](#miscellaneous-advice)
 * [Options](#options)
 * [Mappings](#mappings)
 * [Variables](#variables)
