@@ -41,7 +41,7 @@ Unless you *really* know what you are doing, whatever you do to customize Vim sh
 
 Customizing Vim usually involves editing its main configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
 
-The canonical location for your `vimrc` file and `vimfiles` directory is at the root of the `$HOME` directory mentioned earlier:
+The canonical location for your `vimrc` file and `vimfiles` directory is at the root of the `$HOME` directory mentioned above:
 
 System | `vimrc` | `vimfiles`
 ---|---|---
@@ -50,25 +50,17 @@ Windows | `$HOME\_vimrc` | `$HOME\vimfiles\`
 
 Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vimfiles`. It is really a good idea, if only because it makes it easier to move your config around.
 
-If you use 7.4 or above exclusively, the following gives you a portable setup:
+The following gives you a neat sef-contained setup from 7.4 up:
 
 System | Location
 ---|---
 UNIX-like | `$HOME/.vim/vimrc`
 Windows | `$HOME\vimfiles\vimrc`
 
-If you want a self-contained `vimfiles` but use both 7.4 or above and an older version, or only an older version, the simplest, future-proof, solution is to put this line and only this line:
+Here are a few things to keep in mind as you decide to move your `vimrc` into your `vimfiles`, though:
 
-    runtime vimrc
-
-in this file:
-
-System | Location
----|---
-UNIX-like | `$HOME/.vimrc`
-Windows | `$HOME\_vimrc`
-
-and do your configuration in `$HOME/.vim/vimrc` or `$HOME\vimfiles\vimrc`.
+* `.vimrc` loses its dot and `_vimrc` loses its underscore to be come `vimrc`.
+* Symbolic links can mess things up in all kinds of ways so make sure your `.vimrc` or `_vimrc` is not already linked and that you actually *move* it rather than copying it.
 
 
 
