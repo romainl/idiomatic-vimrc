@@ -7,29 +7,24 @@
 
 <!-- Logo -->
 <p align="center">
-  <img src="https://i.imgur.com/C6mxszA.png" alt="Idiomatic VIMRC" height="150px">
+  <a href="https://github.com/romainl/idiomatic-vimrc">
+    <img src="https://i.imgur.com/C6mxszA.png" alt="Idiomatic VIMRC" height="150px" />
+  </a>
 </p>
 
 <!-- Title and Description -->
 <div align="center">
 
-# 慣用的 `vimrc`
+# IDIOMATIC VIMRC
 
-🔨 _一份刻劃屬於你自己的 Vim/NeoVim 設定（`vimrc`） 的導引指南_
-
-</div>
-
-<details><summary><b>Read in Other Avaiable Translations</b></summary>
-<p>
-
-<div align="center">
-
-[🇺🇸 English](./README.md) ・ [🇹🇼 Traditional Chinese](./README-zh_TW.md)
+導引指南：如何打磨屬於你的 `~/.vimrc` 設定
 
 </div>
 
-<p>
-</details>
+This document is available in the following languages:
+
+- [English](./README.md)
+- [Traditional Chinese](./README-zh_TW.md)
 
 ## 前言（Preface）
 
@@ -56,7 +51,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 - [自訂函數（Custom Functions）](#自訂函數custom-functions)
 - [自動命令（Auto Commands）](#自動命令auto-commands)
 - [條件判斷（Conditionals）](#條件判斷conditionals)
-- [🚧 色彩配置 (Colors)](#-色彩配置-colors)
+- [色彩配置 (Colors)](#色彩配置-colors)
 - [擴充插件（Plugins）](#擴充插件plugins)
   - [Vim 8 新特性：套件（packages）](#vim-8-新特性套件packages)
 - [建議設定（提供給開發人員的最小化建議設定）](#建議設定提供給開發人員的最小化建議設定)
@@ -120,7 +115,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 - 如果你有許多自訂函數，考慮將他們存放在 `autoload/` 目錄下，詳見 `:help autoload`：
 
     ```
-    " ~/.vim/autoload/myfunctions.vim
+    ~/.vim/autoload/myfunctions.vim
     call myfunctions#foo()
     ```
 
@@ -262,9 +257,9 @@ command! MyOtherCommand command | Command | command
 
 **範例**：
 
-```
+```vim
 function! MyFunction(foo, bar) abort
-    return a:foo . a:bar
+  return a:foo . a:bar
 endfunction
 ```
 
@@ -277,20 +272,20 @@ endfunction
 
 ```vim
 augroup MyGroup
-    " Clear the autocommands of the current group to prevent them from piling
-    " up each time you reload your vimrc.
-    autocmd!
+  " Clear the autocommands of the current group to prevent them from piling
+  " up each time you reload your vimrc.
+  autocmd!
 
-    " These autocommands are fired after the filetype of a buffer is defined to
-    " `foo`. Don't forget to use `setlocal` (for options) and `<buffer>`
-    " (for mappings) to prevent your settings to leak in other buffers with
-    " a different filetype.
-    autocmd FileType foo setlocal bar=baz
-    autocmd FileType foo nnoremap <buffer> <key> :command<CR>
+  " These autocommands are fired after the filetype of a buffer is defined to
+  " `foo`. Don't forget to use `setlocal` (for options) and `<buffer>`
+  " (for mappings) to prevent your settings to leak in other buffers with
+  " a different filetype.
+  autocmd FileType foo setlocal bar=baz
+  autocmd FileType foo nnoremap <buffer> <key> :command<CR>
 
-    " This autocmd calls `MyFunction()` everytime Vim tries to create/edit
-    " a buffer tied to a file in /`path/to/project/**/`.
-    autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
+  " This autocmd calls `MyFunction()` everytime Vim tries to create/edit
+  " a buffer tied to a file in /`path/to/project/**/`.
+  autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
 augroup END
 ```
 
@@ -299,7 +294,7 @@ augroup END
 ```vim
 " Put an empty, self-clearing group somewhere near the top of your vimrc
 augroup MyGroup
-    autocmd!
+  autocmd!
 augroup END
 
 " Add autocommands to that group from anywhere
@@ -312,7 +307,7 @@ autocmd MyGroup BufNew,BufEnter /path/to/project/**/* call MyFunction()
 
 ```vim
 if v:version >= 704
-    " see :help v:version
+  " see :help v:version
 endif
 ```
 
@@ -320,7 +315,7 @@ endif
 
 ```vim
 if has('patch666')
-    " see :help has-patch
+  " see :help has-patch
 endif
 ```
 
@@ -328,11 +323,11 @@ endif
 
 ```
 if has('feature')
-    " see :help feature-list
+  " see :help feature-list
 endif
 ```
 
-## 🚧 色彩配置 (Colors)
+## 色彩配置 (Colors)
 
 - GVim and MacVim (GUI Vim) can display millions of colors.
 - CLI Vim is limited by the capabilities of your shell and terminal emulator.
@@ -353,31 +348,31 @@ endif
 
 - 特定檔案類型的執行腳本必須以檔案類型作為檔案名稱，並存放在 `ftplugin/` 目錄
 
-    ```vim
+    ```
     ftplugin/javascript.vim
     ```
 
 - 特定檔案類型的縮排設定必須以檔案類型作為檔案名稱，並存放在 `indent/` 目錄
 
-    ```vim
+    ```
     indent/javascript.vim
     ```
 
 - 特定檔案類型的語法設定必須以檔案類型作為檔案名稱，並存放在 `syntax/` 目錄
 
-    ```vim
+    ```
     syntax/javascript.vim
     ```
 
 - 需要時才自動加載的腳本檔案，應存放在 `autoload/` 目錄
 
-    ```vim
+    ```
     autoload/foo.vim
     ```
 
 - 擴充插件的腳本檔案，應存放在 `plugin/` 目錄
 
-    ```vim
+    ```
     plugin/foo.vim
     ```
 
@@ -411,7 +406,7 @@ endif
 
 ## 建議設定（提供給開發人員的最小化建議設定）
 
-```VimL
+```Vim
 " Enabling filetype support provides filetype-specific indenting,
 " syntax highlighting, omni-completion and other useful settings.
 filetype plugin indent on
@@ -427,9 +422,9 @@ set backspace=indent,eol,start " Proper backspace behavior.
 set hidden                     " Possibility to have more than one unsaved buffers.
 set incsearch                  " Incremental search, hit `<CR>` to stop.
 set ruler                      " Shows the current line number at the bottom-right
-                                " of the screen.
+                               " of the screen.
 set wildmenu                   " Great command-line completion, use `<Tab>` to move
-                                " around and `<CR>` to validate.
+                               " around and `<CR>` to validate.
 ```
 
 [//]: # ( Vim: set spell spelllang=en: )

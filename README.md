@@ -7,7 +7,9 @@
 
 <!-- Logo -->
 <p align="center">
-  <img src="https://i.imgur.com/C6mxszA.png" alt="Idiomatic VIMRC" height="150px">
+  <a href="https://github.com/romainl/idiomatic-vimrc">
+    <img src="https://i.imgur.com/C6mxszA.png" alt="Idiomatic VIMRC" height="150px" />
+  </a>
 </p>
 
 <!-- Title and Description -->
@@ -15,21 +17,14 @@
 
 # IDIOMATIC VIMRC
 
-🔨 _Guidelines for Sculpting Your Very Own Vim/NeoVim Configuration (`.vimrc`)_
+Guidelines for sculpting your very own `~/.vimrc`.
 
 </div>
 
-<details><summary><b>Read in Other Avaiable Translations</b></summary>
-<p>
+This document is available in the following languages:
 
-<div align="center">
-
-[🇺🇸 English](./README.md) ・ [🇹🇼 Traditional Chinese](./README-zh_TW.md)
-
-</div>
-
-<p>
-</details>
+- [English](./README.md)
+- [Traditional Chinese](./README-zh_TW.md)
 
 ## PREFACE
 
@@ -56,7 +51,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 - [CUSTOM FUNCTIONS](#custom-functions)
 - [AUTOCOMMANDS](#autocommands)
 - [CONDITIONALS](#conditionals)
-- [🚧 COLORS (WIP)](#-colors-wip)
+- [COLORS (WIP)](#colors-wip)
 - [PLUGINS](#plugins)
   - [Vim 8's "package" feature](#vim-8s-package-feature)
 - [SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING](#suggested-minimal-settings-for-programming)
@@ -115,7 +110,7 @@ Here are a few things to keep in mind as you decide to move your `vimrc` into yo
 - `set paste` has a lot of nasty side effects, don't put it in your `vimrc`.
 - If you have many autocommands for many filetype-specific settings, consider moving those settings to proper filetype plugins:
 
-    ```vim
+    ```
     ~/.vim/after/ftplugin/php.vim
     ```
 
@@ -143,38 +138,38 @@ Checking the value of an option:
 
 Setting boolean options (`booloption` is not a real option):
 
-    ```vim
-    set booloption      " Set booloption.
-    set nobooloption    " Unset booloption.
+```vim
+set booloption      " Set booloption.
+set nobooloption    " Unset booloption.
 
-    set booloption!     " Toggle booloption.
+set booloption!     " Toggle booloption.
 
-    set booloption&     " Reset booloption to its default value.
-    ```
+set booloption&     " Reset booloption to its default value.
+```
 
 Setting string options (`stroption` is not a real option):
 
-    ```vim
-    set stroption=baz   " baz
+```vim
+set stroption=baz   " baz
 
-    set stroption+=buzz " baz,buzz
-    set stroption^=fizz " fizz,baz,buzz
-    set stroption-=baz  " fizz,buzz
+set stroption+=buzz " baz,buzz
+set stroption^=fizz " fizz,baz,buzz
+set stroption-=baz  " fizz,buzz
 
-    set stroption=      " Unset stroption.
+set stroption=      " Unset stroption.
 
-    set stroption&      " Reset stroption to its default value.
-    ```
+set stroption&      " Reset stroption to its default value.
+```
 
 Setting number options (`numoption` is not a real option):
 
-    ```vim
-    set numoption=1     " 1
+```vim
+set numoption=1     " 1
 
-    set numoption+=2    " 1 + 2 = 3
-    set numoption-=1    " 3 - 1 = 2
-    set numoption^=8    " 2 * 8 = 16
-    ```
+set numoption+=2    " 1 + 2 = 3
+set numoption-=1    " 3 - 1 = 2
+set numoption^=8    " 2 * 8 = 16
+```
 
 ## MAPPINGS
 
@@ -187,34 +182,34 @@ Setting number options (`numoption` is not a real option):
 
 Use non-recursive mappings ONLY if you intend to use default commands in your mappings, which is almost always what you want:
 
-    ```vim
-    nnoremap <key> yyp
-    ```
+```vim
+nnoremap <key> yyp
+```
 
 Use recursive mappings ONLY if you intend to use other mappings in your mappings:
 
-    ```vim
-    nnoremap b     B
-    nmap     <key> db
-    ```
+```vim
+nnoremap b     B
+nmap     <key> db
+```
 
 Executing a command from a mapping:
 
-    ```vim
-    nnoremap <key> :MyCommand<CR>
-    ```
+```vim
+nnoremap <key> :MyCommand<CR>
+```
 
 Executing multiple commands from a mapping:
 
-    ```vim
-    nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
-    ```
+```vim
+nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
+```
 
 Calling a function from a mapping:
 
-    ```vim
-    nnoremap <key> :call SomeFunction()<CR>
-    ```
+```vim
+nnoremap <key> :call SomeFunction()<CR>
+```
 
 ## VARIABLES
 
@@ -222,21 +217,21 @@ Like most scripting languages, vimscript has variables.
 
 One can define a variable with the `:let` command:
 
-    ```vim
-    let variable = value
-    ```
+```vim
+let variable = value
+```
 
 And delete it with `:unlet`:
 
-    ```vim
-    unlet variable
-    ```
+```vim
+unlet variable
+```
 
 In Vim, variables can be scoped by prepending a single letter and a colon to their name. Plugin authors use that feature to mimic options:
 
-    ```vim
-    let g:plugin_variable = 1
-    ```
+```vim
+let g:plugin_variable = 1
+```
 
 Read up on the subject in `:help internal-variables`.
 
@@ -248,10 +243,10 @@ Read up on the subject in `:help internal-variables`.
 
 Examples:
 
-    ```vim
-    command! MyCommand call SomeFunction()
-    command! MyOtherCommand command | Command | command
-    ```
+```vim
+command! MyCommand call SomeFunction()
+command! MyOtherCommand command | Command | command
+```
 
 ## CUSTOM FUNCTIONS
 
@@ -262,11 +257,11 @@ Examples:
 
 Example:
 
-    ```vim
-    function! MyFunction(foo, bar) abort
-      return a:foo . a:bar
-    endfunction
-    ```
+```vim
+function! MyFunction(foo, bar) abort
+  return a:foo . a:bar
+endfunction
+```
 
 ## AUTOCOMMANDS
 
@@ -275,64 +270,64 @@ Example:
 
 Example:
 
-    ```vim
-    augroup MyGroup
-      " Clear the autocommands of the current group to prevent them from piling
-      " up each time you reload your vimrc.
-      autocmd!
+```vim
+augroup MyGroup
+  " Clear the autocommands of the current group to prevent them from piling
+  " up each time you reload your vimrc.
+  autocmd!
 
-      " These autocommands are fired after the filetype of a buffer is defined to
-      " `foo`. Don't forget to use `setlocal` (for options) and `<buffer>`
-      " (for mappings) to prevent your settings to leak in other buffers with
-      " a different filetype.
-      autocmd FileType foo setlocal bar=baz
-      autocmd FileType foo nnoremap <buffer> <key> :command<CR>
+  " These autocommands are fired after the filetype of a buffer is defined to
+  " `foo`. Don't forget to use `setlocal` (for options) and `<buffer>`
+  " (for mappings) to prevent your settings to leak in other buffers with
+  " a different filetype.
+  autocmd FileType foo setlocal bar=baz
+  autocmd FileType foo nnoremap <buffer> <key> :command<CR>
 
-      " This autocmd calls `MyFunction()` everytime Vim tries to create/edit
-      " a buffer tied to a file in /`path/to/project/**/`.
-      autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
-    augroup END
-    ```
+  " This autocmd calls `MyFunction()` everytime Vim tries to create/edit
+  " a buffer tied to a file in /`path/to/project/**/`.
+  autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
+augroup END
+```
 
 Alternative strategy:
 
-    ```vim
-    " Put an empty, self-clearing group somewhere near the top of your vimrc
-    augroup MyGroup
-      autocmd!
-    augroup END
+```vim
+" Put an empty, self-clearing group somewhere near the top of your vimrc
+augroup MyGroup
+  autocmd!
+augroup END
 
-    " Add autocommands to that group from anywhere
-    autocmd MyGroup BufNew,BufEnter /path/to/project/**/* call MyFunction()
-    ```
+" Add autocommands to that group from anywhere
+autocmd MyGroup BufNew,BufEnter /path/to/project/**/* call MyFunction()
+```
 
 ## CONDITIONALS
 
 Do something if Vim is the right version:
 
-    ```vim
-    if v:version >= 704
-      " see :help v:version
-    endif
-    ```
+```vim
+if v:version >= 704
+  " see :help v:version
+endif
+```
 
 Do something if Vim has the right patch-level:
 
-    ```vim
-    if has('patch666')
-      " see :help has-patch
-    endif
-    ```
+```vim
+if has('patch666')
+  " see :help has-patch
+endif
+```
 
 Do something if Vim is built with `feature`:
 
-    ```vim
-    if has('feature')
-      " see :help feature-list
-    endif
-    ```
+```vim
+if has('feature')
+  " see :help feature-list
+endif
+```
 
-## 🚧 COLORS (WIP)
+## COLORS (WIP)
 
 - GVim and MacVim (GUI Vim) can display millions of colors.
 - CLI Vim is limited by the capabilities of your shell and terminal emulator.
