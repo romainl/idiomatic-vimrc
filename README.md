@@ -1,6 +1,32 @@
+<!-- Badge for License -->
+<div align="right">
+
+  [![](https://img.shields.io/github/license/romainl/idiomatic-vimrc.svg?style=flat-square)](./LICENSE)
+
+</div>
+
+<!-- Logo -->
+<p align="center">
+  <a href="https://github.com/romainl/idiomatic-vimrc">
+    <img src="https://i.imgur.com/C6mxszA.png" alt="Idiomatic VIMRC" height="150px" />
+  </a>
+</p>
+
+<!-- Title and Description -->
+<div align="center">
+
 # IDIOMATIC VIMRC
 
 Guidelines for sculpting your very own `~/.vimrc`.
+
+</div>
+
+This document is available in the following languages:
+
+- [English](./README.md)
+- [Traditional Chinese](./README-zh_TW.md)
+
+## PREFACE
 
 Unlike the many so-called "distributions", "templates" or "awesome `vimrc`" you can find on the web, this repository is ***NOT*** meant to be an actual `vimrc` or even form the basis of your own `vimrc` so don't copy it to your `$HOME` and expect it to work.
 
@@ -12,24 +38,23 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 
 ![pandajail](https://i.chzbgr.com/maxW500/7518742016/h59D3B471/)
 
-
-
 ## TABLE OF CONTENTS
 
-* [Files and directories](#files-and-directories)
-* [Miscellaneous advice](#miscellaneous-advice)
-* [Options](#options)
-* [Mappings](#mappings)
-* [Variables](#variables)
-* [Custom commands](#custom-commands)
-* [Custom functions](#custom-functions)
-* [Autocommands](#autocommands)
-* [Conditionals](#conditionals)
-* [Colors (WIP)](#colors-wip)
-* [Plugins (WIP)](#plugins-wip)
-* [Suggested minimal settings for programming](#suggested-minimal-settings-for-programming)
-
-
+- [PREFACE](#preface)
+- [TABLE OF CONTENTS](#table-of-contents)
+- [FILES AND DIRECTORIES](#files-and-directories)
+- [MISCELLANEOUS ADVICE](#miscellaneous-advice)
+- [OPTIONS](#options)
+- [MAPPINGS](#mappings)
+- [VARIABLES](#variables)
+- [CUSTOM COMMANDS](#custom-commands)
+- [CUSTOM FUNCTIONS](#custom-functions)
+- [AUTOCOMMANDS](#autocommands)
+- [CONDITIONALS](#conditionals)
+- [COLORS (WIP)](#colors-wip)
+- [PLUGINS](#plugins)
+  - [Vim 8's "package" feature](#vim-8s-package-feature)
+- [SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING](#suggested-minimal-settings-for-programming)
 
 ## FILES AND DIRECTORIES
 
@@ -43,40 +68,40 @@ Customizing Vim usually involves editing its main configuration file, called `vi
 
 The canonical location for your `vimrc` file and `vimfiles` directory is at the root of the `$HOME` directory mentioned above:
 
-System | `vimrc` | `vimfiles`
----|---|---
-UNIX-like | `$HOME/.vimrc` | `$HOME/.vim/`
-Windows | `$HOME\_vimrc` | `$HOME\vimfiles\`
+| System    | `vimrc`        | `vimfiles`        |
+| --------- | -------------- | ----------------- |
+| UNIX-like | `$HOME/.vimrc` | `$HOME/.vim/`     |
+| Windows   | `$HOME\_vimrc` | `$HOME\vimfiles\` |
 
 Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vimfiles`. It is really a good idea, if only because it makes it easier to move your config around.
 
 The following gives you a neat sef-contained setup from 7.4 up:
 
-System | Location
----|---
-UNIX-like | `$HOME/.vim/vimrc`
-Windows | `$HOME\vimfiles\vimrc`
+| System    | Location               |
+| --------- | ---------------------- |
+| UNIX-like | `$HOME/.vim/vimrc`     |
+| Windows   | `$HOME\vimfiles\vimrc` |
 
 Here are a few things to keep in mind as you decide to move your `vimrc` into your `vimfiles`, though:
 
 * `.vimrc` loses its dot and `_vimrc` loses its underscore to be come `vimrc`.
 * Symbolic links can mess things up in all kinds of ways so make sure your `.vimrc` or `_vimrc` is not already linked and that you actually *move* it rather than copying it.
 
-
-
 ## MISCELLANEOUS ADVICE
 
 - Using short names has ONLY cons and ZERO pros. Don't.
 - Learning how to use Vim's fantastic documentation is the most useful thing a Vim newcomer could do:
 
-      :help :command
-      :help function()
-      :help 'option'
-      :help i_ctrl-a
-      :helpgrep foo
-      :help get<C-d>
-      <C-]> on an highlighted tag to jump to the corresponding entry
-      <C-t> to come back
+    ```vim
+    :help :command
+    :help function()
+    :help 'option'
+    :help i_ctrl-a
+    :helpgrep foo
+    :help get<C-d>
+    <C-]> on an highlighted tag to jump to the corresponding entry
+    <C-t> to come back
+    ```
 
 - Always refer to the relevant `:help` before adding anything to your `vimrc`.
 - You don't need `set nocompatible` if you have a custom `vimrc` at the expected location.
@@ -85,16 +110,18 @@ Here are a few things to keep in mind as you decide to move your `vimrc` into yo
 - `set paste` has a lot of nasty side effects, don't put it in your `vimrc`.
 - If you have many autocommands for many filetype-specific settings, consider moving those settings to proper filetype plugins:
 
-      ~/.vim/after/ftplugin/php.vim
+    ```
+    ~/.vim/after/ftplugin/php.vim
+    ```
 
 - If you have many custom functions, consider moving them to the `autoload/` directory. See `:help autoload`:
 
-      ~/.vim/autoload/myfunctions.vim
-      call myfunctions#foo()
+    ```vim
+    ~/.vim/autoload/myfunctions.vim
+    call myfunctions#foo()
+    ```
 
 - Vim already gives you the ability to browse local and remote file systems, integrate `ack` or `ag` or `rg`, navigate, complete and compile your code, run syntax checkers on write, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
-
-
 
 ## OPTIONS
 
@@ -111,34 +138,38 @@ Checking the value of an option:
 
 Setting boolean options (`booloption` is not a real option):
 
-    set booloption      " Set booloption.
-    set nobooloption    " Unset booloption.
+```vim
+set booloption      " Set booloption.
+set nobooloption    " Unset booloption.
 
-    set booloption!     " Toggle booloption.
+set booloption!     " Toggle booloption.
 
-    set booloption&     " Reset booloption to its default value.
+set booloption&     " Reset booloption to its default value.
+```
 
 Setting string options (`stroption` is not a real option):
 
-    set stroption=baz   " baz
+```vim
+set stroption=baz   " baz
 
-    set stroption+=buzz " baz,buzz
-    set stroption^=fizz " fizz,baz,buzz
-    set stroption-=baz  " fizz,buzz
+set stroption+=buzz " baz,buzz
+set stroption^=fizz " fizz,baz,buzz
+set stroption-=baz  " fizz,buzz
 
-    set stroption=      " Unset stroption.
+set stroption=      " Unset stroption.
 
-    set stroption&      " Reset stroption to its default value.
+set stroption&      " Reset stroption to its default value.
+```
 
 Setting number options (`numoption` is not a real option):
 
-    set numoption=1     " 1
+```vim
+set numoption=1     " 1
 
-    set numoption+=2    " 1 + 2 = 3
-    set numoption-=1    " 3 - 1 = 2
-    set numoption^=8    " 2 * 8 = 16
-
-
+set numoption+=2    " 1 + 2 = 3
+set numoption-=1    " 3 - 1 = 2
+set numoption^=8    " 2 * 8 = 16
+```
 
 ## MAPPINGS
 
@@ -151,26 +182,34 @@ Setting number options (`numoption` is not a real option):
 
 Use non-recursive mappings ONLY if you intend to use default commands in your mappings, which is almost always what you want:
 
-    nnoremap <key> yyp
+```vim
+nnoremap <key> yyp
+```
 
 Use recursive mappings ONLY if you intend to use other mappings in your mappings:
 
-    nnoremap b     B
-    nmap     <key> db
+```vim
+nnoremap b     B
+nmap     <key> db
+```
 
 Executing a command from a mapping:
 
-    nnoremap <key> :MyCommand<CR>
+```vim
+nnoremap <key> :MyCommand<CR>
+```
 
 Executing multiple commands from a mapping:
 
-    nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
+```vim
+nnoremap <key> :MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
+```
 
 Calling a function from a mapping:
 
-    nnoremap <key> :call SomeFunction()<CR>
-
-
+```vim
+nnoremap <key> :call SomeFunction()<CR>
+```
 
 ## VARIABLES
 
@@ -178,19 +217,23 @@ Like most scripting languages, vimscript has variables.
 
 One can define a variable with the `:let` command:
 
-    let variable = value
+```vim
+let variable = value
+```
 
 And delete it with `:unlet`:
 
-    unlet variable
+```vim
+unlet variable
+```
 
 In Vim, variables can be scoped by prepending a single letter and a colon to their name. Plugin authors use that feature to mimic options:
 
-    let g:plugin_variable = 1
+```vim
+let g:plugin_variable = 1
+```
 
 Read up on the subject in `:help internal-variables`.
-
-
 
 ## CUSTOM COMMANDS
 
@@ -200,10 +243,10 @@ Read up on the subject in `:help internal-variables`.
 
 Examples:
 
-    command! MyCommand call SomeFunction()
-    command! MyOtherCommand command | Command | command
-
-
+```vim
+command! MyCommand call SomeFunction()
+command! MyOtherCommand command | Command | command
+```
 
 ## CUSTOM FUNCTIONS
 
@@ -214,11 +257,11 @@ Examples:
 
 Example:
 
-    function! MyFunction(foo, bar) abort
-      return a:foo . a:bar
-    endfunction
-
-
+```vim
+function! MyFunction(foo, bar) abort
+  return a:foo . a:bar
+endfunction
+```
 
 ## AUTOCOMMANDS
 
@@ -227,56 +270,62 @@ Example:
 
 Example:
 
-    augroup MyGroup
-      " Clear the autocommands of the current group to prevent them from piling
-      " up each time you reload your vimrc.
-      autocmd!
+```vim
+augroup MyGroup
+  " Clear the autocommands of the current group to prevent them from piling
+  " up each time you reload your vimrc.
+  autocmd!
 
-      " These autocommands are fired after the filetype of a buffer is defined to
-      " `foo`. Don't forget to use `setlocal` (for options) and `<buffer>`
-      " (for mappings) to prevent your settings to leak in other buffers with
-      " a different filetype.
-      autocmd FileType foo setlocal bar=baz
-      autocmd FileType foo nnoremap <buffer> <key> :command<CR>
+  " These autocommands are fired after the filetype of a buffer is defined to
+  " `foo`. Don't forget to use `setlocal` (for options) and `<buffer>`
+  " (for mappings) to prevent your settings to leak in other buffers with
+  " a different filetype.
+  autocmd FileType foo setlocal bar=baz
+  autocmd FileType foo nnoremap <buffer> <key> :command<CR>
 
-      " This autocmd calls `MyFunction()` everytime Vim tries to create/edit
-      " a buffer tied to a file in /`path/to/project/**/`.
-      autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
-    augroup END
+  " This autocmd calls `MyFunction()` everytime Vim tries to create/edit
+  " a buffer tied to a file in /`path/to/project/**/`.
+  autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
+augroup END
+```
 
 Alternative strategy:
 
-    " Put an empty, self-clearing group somewhere near the top of your vimrc
-    augroup MyGroup
-      autocmd!
-    augroup END
+```vim
+" Put an empty, self-clearing group somewhere near the top of your vimrc
+augroup MyGroup
+  autocmd!
+augroup END
 
-    " Add autocommands to that group from anywhere
-    autocmd MyGroup BufNew,BufEnter /path/to/project/**/* call MyFunction()
-
-
+" Add autocommands to that group from anywhere
+autocmd MyGroup BufNew,BufEnter /path/to/project/**/* call MyFunction()
+```
 
 ## CONDITIONALS
 
 Do something if Vim is the right version:
 
-    if v:version >= 704
-      " see :help v:version
-    endif
+```vim
+if v:version >= 704
+  " see :help v:version
+endif
+```
 
 Do something if Vim has the right patch-level:
 
-    if has('patch666')
-      " see :help has-patch
-    endif
+```vim
+if has('patch666')
+  " see :help has-patch
+endif
+```
 
 Do something if Vim is built with `feature`:
 
-    if has('feature')
-      " see :help feature-list
-    endif
-
-
+```vim
+if has('feature')
+  " see :help feature-list
+endif
+```
 
 ## COLORS (WIP)
 
@@ -285,8 +334,6 @@ Do something if Vim is built with `feature`:
 - GUI-specific colorschemes can't be expected to work in CLI Vim.
 - CLI-specific colorschemes can't be expected to work in GUI Vim.
 - To determine if a pretty colorscheme is right for your environment, Look for `guibg` (means GUI support) and `ctermbg` (means CLI support).
-
-
 
 ## PLUGINS
 
@@ -303,27 +350,39 @@ Properly designed plugins usually follow Vim's own runtime directory's structure
 
 - filetype-specific scripts are named after their filetype and go into `ftplugin/`
 
-      ftplugin/javascript.vim
+    ```
+    ftplugin/javascript.vim
+    ```
 
 - filetype-specific indent scripts are named after their filetype and go into `indent/`
 
-      indent/javascript.vim
+    ```
+    indent/javascript.vim
+    ```
 
 - filetype-specific syntax scripts are named after their filetype and go into `syntax/`
 
-      syntax/javascript.vim
+    ```
+    syntax/javascript.vim
+    ```
 
 - autoloaded scripts go into `autoload/`
 
-      autoload/foo.vim
+    ```
+    autoload/foo.vim
+    ```
 
 - plugin scripts go into `plugin/`
 
-      plugin/foo.vim
+    ```
+    plugin/foo.vim
+    ```
 
 - plugin documentation goes into `doc/`
 
-      doc/foo.txt
+    ```
+    doc/foo.txt
+    ```
 
 Historically, the normal method for installing plugins was to put each file in its corresponding directory. It was messy and the more plugins you added the messier your `vimfiles` would get.
 
@@ -335,43 +394,42 @@ Using a plugin manager is not an absolute requirement, after all, the traditiona
 
 Vim 8 introduced a new scheme called *package* that lets you organise your plugins in so-called "packages" and decide whether they are to be enabled at startup or manually:
 
-Directory | Description
----|---
-`pack/{arbitrary name}/start/` | Plugins in this directory are enabled automatically at startup
-`pack/{arbitrary name}/opt/` | Plugins in this directory are enabled manually
+| Directory                      | Description                                                    |
+| ------------------------------ | -------------------------------------------------------------- |
+| `pack/{arbitrary name}/start/` | Plugins in this directory are enabled automatically at startup |
+| `pack/{arbitrary name}/opt/`   | Plugins in this directory are enabled manually                 |
 
 For example, here is my setup:
 
-* `pack/bundle/start/` is where I put all my "quality of life" plugins,
-* `pack/lang/start/` is where I put all my "language support" plugins.
+- `pack/bundle/start/` is where I put all my "quality of life" plugins,
+- `pack/lang/start/` is where I put all my "language support" plugins.
 
 While that feature is a clear improvement, it is still not an actual plugin manager and you *may* still have to use one if you need one.
 
 See `:help package`.
 
-
-
 ## SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
 
-    " Enabling filetype support provides filetype-specific indenting,
-    " syntax highlighting, omni-completion and other useful settings.
-    filetype plugin indent on
-    syntax on
+```vim
+" Enabling filetype support provides filetype-specific indenting,
+" syntax highlighting, omni-completion and other useful settings.
+filetype plugin indent on
+syntax on
 
-    " `matchit.vim` is built-in so let's enable it!
-    " Hit `%` on `if` to jump to `else`.
-    runtime macros/matchit.vim
+" `matchit.vim` is built-in so let's enable it!
+" Hit `%` on `if` to jump to `else`.
+runtime macros/matchit.vim
 
-    " various settings
-    set autoindent                 " Minimal automatic indenting for any filetype.
-    set backspace=indent,eol,start " Proper backspace behavior.
-    set hidden                     " Possibility to have more than one unsaved buffers.
-    set incsearch                  " Incremental search, hit `<CR>` to stop.
-    set ruler                      " Shows the current line number at the bottom-right
-                                   " of the screen.
-    set wildmenu                   " Great command-line completion, use `<Tab>` to move
-                                   " around and `<CR>` to validate.
-
+" various settings
+set autoindent                 " Minimal automatic indenting for any filetype.
+set backspace=indent,eol,start " Proper backspace behavior.
+set hidden                     " Possibility to have more than one unsaved buffers.
+set incsearch                  " Incremental search, hit `<CR>` to stop.
+set ruler                      " Shows the current line number at the bottom-right
+                               " of the screen.
+set wildmenu                   " Great command-line completion, use `<Tab>` to move
+                               " around and `<CR>` to validate.
+```
 
 
 [//]: # ( Vim: set spell spelllang=en: )
