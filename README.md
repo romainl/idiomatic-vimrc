@@ -170,7 +170,7 @@ Calling a function from a mapping:
 
     nnoremap <key> :call SomeFunction()<CR>
 
-NOTE: since 8.2.1978, the recommended way to call Ex commands from a mapping is to with `:help <Cmd>`:
+NOTE: since 8.2.1978, the recommended way to call Ex commands from a mapping is with `:help <Cmd>`:
 
     nnoremap <key> <Cmd>MyCommand<CR>
     nnoremap <key> <Cmd>MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
