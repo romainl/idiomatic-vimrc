@@ -2,7 +2,7 @@
 
 Guidelines for sculpting your very own `~/.vimrc`.
 
-Unlike the many so-called "distributions", "templates" or "awesome `vimrc`" you can find on the web, this repository is ***NOT*** meant to be an actual `vimrc` or even form the basis of your own `vimrc` so don't copy it to your `$HOME` and expect it to work.
+Unlike the many so-called "distributions", "templates" or "awesome `vimrc`" you can find on the web, this document is ***NOT*** meant to be an actual `vimrc` or even form the basis of your own `vimrc` so don't copy it to your `$HOME` and expect it to work.
 
 The purpose of this repository is to document battle-tested best practices regarding Vim configuration. Use it as a reference, not as a starting point.
 
@@ -26,7 +26,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 * [Autocommands](#autocommands)
 * [Conditionals](#conditionals)
 * [Colors (WIP)](#colors-wip)
-* [Plugins (WIP)](#plugins-wip)
+* [Plugins](#plugins)
 * [Suggested minimal settings for programming](#suggested-minimal-settings-for-programming)
 
 
@@ -57,7 +57,7 @@ System | Location
 UNIX-like | `$HOME/.vim/vimrc`
 Windows | `$HOME\vimfiles\vimrc`
 
-Here are a few things to keep in mind as you decide to move your `vimrc` into your `vimfiles`, though:
+Here are a few things to keep in mind if you decide to move your `vimrc` into your `vimfiles`, though:
 
 * `.vimrc` loses its dot and `_vimrc` loses its underscore to be come `vimrc`.
 * Symbolic links can mess things up in all kinds of ways so make sure your `.vimrc` or `_vimrc` is not already linked and that you actually *move* it rather than copying it.
@@ -66,7 +66,7 @@ Here are a few things to keep in mind as you decide to move your `vimrc` into yo
 
 ## MISCELLANEOUS ADVICE
 
-- Using short names has ONLY cons and ZERO pros. Don't.
+- Using short names like `fu` or `ai` has ONLY cons and ZERO pros. Don't.
 - Learning how to use Vim's fantastic documentation is the most useful thing a Vim newcomer could do:
 
       :help :command
@@ -78,11 +78,11 @@ Here are a few things to keep in mind as you decide to move your `vimrc` into yo
       <C-]> on an highlighted tag to jump to the corresponding entry
       <C-t> to come back
 
-- Always refer to the relevant `:help` before adding anything to your `vimrc`.
-- You don't need `set nocompatible` if you have a custom `vimrc` at the expected location.
+- Always refer to the relevant `:help` before adding *anything* to your `vimrc`.
+- You don't need `set nocompatible` if you have a custom `vimrc` at the expected location (see above).
 - `set background=dark` doesn't do what you think it does.
-- `set t_Co=256` is a bad idea, set your terminal up properly instead.
-- `set paste` has a lot of nasty side effects, don't put it in your `vimrc`.
+- `set t_Co=256` is a bad idea. Vim sets it on its own depending on `$TERM` so set your terminal up properly instead.
+- `set paste` has a lot of nasty side effects, don't put it in your `vimrc` before carefully reading `:help 'paste'`.
 - If you have many autocommands for many filetype-specific settings, consider moving those settings to proper filetype plugins:
 
       ~/.vim/after/ftplugin/php.vim
@@ -92,7 +92,7 @@ Here are a few things to keep in mind as you decide to move your `vimrc` into yo
       ~/.vim/autoload/myfunctions.vim
       call myfunctions#foo()
 
-- Vim already gives you the ability to browse local and remote file systems, integrate `ack` or `ag` or `rg`, navigate, complete and compile your code, run syntax checkers on write, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
+- Vim already gives you the ability to browse local and remote file systems, integrate `ack` or `ag` or `rg`, navigate, complete and compile your code, run syntax checkers, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
 
 
 
@@ -170,6 +170,12 @@ Calling a function from a mapping:
 
     nnoremap <key> :call SomeFunction()<CR>
 
+NOTE: since 8.2.1978, the recommended way to call Ex commands from a mapping is to with `:help <Cmd>`:
+
+    nnoremap <key> <Cmd>MyCommand<CR>
+    nnoremap <key> <Cmd>MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
+    nnoremap <key> <Cmd>call SomeFunction()<CR>
+
 
 
 ## VARIABLES
@@ -232,15 +238,8 @@ Example:
       " up each time you reload your vimrc.
       autocmd!
 
-      " These autocommands are fired after the filetype of a buffer is defined to
-      " `foo`. Don't forget to use `setlocal` (for options) and `<buffer>`
-      " (for mappings) to prevent your settings to leak in other buffers with
-      " a different filetype.
-      autocmd FileType foo setlocal bar=baz
-      autocmd FileType foo nnoremap <buffer> <key> :command<CR>
-
-      " This autocmd calls `MyFunction()` everytime Vim tries to create/edit
-      " a buffer tied to a file in /`path/to/project/**/`.
+      " This autocmd calls the fictitious `MyFunction()` everytime Vim tries to
+      " create/edit a buffer tied to a file in /`path/to/project/**/`.
       autocmd BufNew,BufEnter /path/to/project/**/* call MyFunction()
     augroup END
 
@@ -280,11 +279,11 @@ Do something if Vim is built with `feature`:
 
 ## COLORS (WIP)
 
-- GVim and MacVim (GUI Vim) can display millions of colors.
-- CLI Vim is limited by the capabilities of your shell and terminal emulator.
-- GUI-specific colorschemes can't be expected to work in CLI Vim.
-- CLI-specific colorschemes can't be expected to work in GUI Vim.
-- To determine if a pretty colorscheme is right for your environment, Look for `guibg` (means GUI support) and `ctermbg` (means CLI support).
+- GUI Vim (`gvim`, GVim, or the MacVim GUI) can display millions of colors.
+- TUI Vim (`vim` running in your terminal) is limited by the capabilities of your terminal emulator.
+- GUI-specific colorschemes can't be expected to work in TUI Vim.
+- TUI-specific colorschemes can't be expected to work in GUI Vim.
+- To determine if a pretty colorscheme is right for your environment, Look for `guibg`/`guifg` (means GUI support) and `ctermbg`/`ctermfg` (means TUI support).
 
 
 
@@ -329,7 +328,7 @@ Historically, the normal method for installing plugins was to put each file in i
 
 To solve that problem, a number of what people call "plugin managers" appeared, all more or less built around the same logic: each plugin is kept in its own directory under a common parent directory and Vim is told where to find those plugins.
 
-Using a plugin manager is not an absolute requirement, after all, the traditional way was messy but workable, but if you think you need one, make sure you read and understand the plugin manager of your choice's README before using it.
+Using a plugin manager is not an absolute requirement. After all, the traditional way was messy but workable, but if you think you need one, make sure you read and understand the plugin manager of your choice's README before using it.
 
 ### Vim 8's "package" feature
 
@@ -352,6 +351,8 @@ See `:help package`.
 
 
 ## SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
+
+The snippet below is merely a suggestion. How you customise your tools is entirely dependant on a) what you use them for and b) how well you know them, so YMMV.
 
     " Enabling filetype support provides filetype-specific indenting,
     " syntax highlighting, omni-completion and other useful settings.
