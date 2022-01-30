@@ -18,6 +18,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 
 * [Files and directories](#files-and-directories)
 * [Miscellaneous advice](#miscellaneous-advice)
+* [Defaults.vim](#defaultsvim)
 * [Options](#options)
 * [Mappings](#mappings)
 * [Variables](#variables)
