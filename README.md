@@ -96,6 +96,27 @@ Here are a few things to keep in mind if you decide to move your `vimrc` into yo
 
 
 
+## DEFAULTS.VIM
+
+Vim's spartan defaults having been a contentious topic for a very long time it has been decided at some point to provide newcomers with a more user-friendly base setup. The scheme that was devised is to *silently* source a specific runtime file, `defaults.vim` if no `vimrc` is found at the usual locations (see above). And indeed, it works as intended: simply starting Vim without a custom config truly provides a slightly more comfortable experience than previously.
+
+One of the troubles with that scheme is that embarking on the life-long journey of mastering Vim implies creating one's own `vimrc`, which effectively disables `defaults.vim`. This puts the new user in an even worse position than before: with the spartan defaults everyone likes to hate *and* no idea whatsoever about how to get back the admitedly useful things they got used to because `defaults.vim` is pretty much a black box. Good job!
+
+In case you happen to struggle with that particular problem, two quick and dirty solutions are offered under `:help defaults.vim`. The first is to source that file in your `vimrc`:
+
+    unlet! skip_defaults_vim
+    source $VIMRUNTIME/defaults.vim
+
+and the second one is to copy its content in your `vimrc`, which you can do like this:
+
+    :0read $VIMRUNTIME/defaults.vim
+
+See `:help :read`.
+
+NOTE: the author doesn't find any of those solutions particularly satisfying and recommends instead to try to understand what that file does and, *eventually*, to copy the most useful bits over to one's `vimrc`.
+
+
+
 ## OPTIONS
 
 There are three kinds of options:
