@@ -50,7 +50,7 @@ Windows | `$HOME\_vimrc` | `$HOME\vimfiles\`
 
 Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vimfiles`. It is really a good idea, if only because it makes it easier to move your config around.
 
-The following gives you a neat sef-contained setup from 7.4 up:
+The following gives you a neat self-contained setup from 7.4 up:
 
 System | Location
 ---|---
