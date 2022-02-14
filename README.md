@@ -26,7 +26,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 * [Custom functions](#custom-functions)
 * [Autocommands](#autocommands)
 * [Conditionals](#conditionals)
-* [Colors (WIP)](#colors-wip)
+* [Colors](#colors)
 * [Plugins](#plugins)
 * [Suggested minimal settings for programming](#suggested-minimal-settings-for-programming)
 
