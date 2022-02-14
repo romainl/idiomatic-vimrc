@@ -67,6 +67,8 @@ Here are a few things to keep in mind if you decide to move your `vimrc` into yo
 * `.vimrc` loses its dot and `_vimrc` loses its underscore to be come `vimrc`.
 * Symbolic links can mess things up in all kinds of ways so make sure your `.vimrc` or `_vimrc` is not already linked and that you actually *move* it rather than copying it.
 
+For the sake of simplicity, the "UNIX-like" notation will be used in the rest of the document.
+
 
 
 ## MISCELLANEOUS ADVICE
@@ -90,11 +92,11 @@ Here are a few things to keep in mind if you decide to move your `vimrc` into yo
 - `set paste` has a lot of nasty side effects, don't put it in your `vimrc` before carefully reading `:help 'paste'`.
 - If you have many autocommands for many filetype-specific settings, consider moving those settings to proper filetype plugins:
 
-      ~/.vim/after/ftplugin/php.vim
+      $HOME/.vim/after/ftplugin/php.vim
 
 - If you have many custom functions, consider moving them to the `autoload/` directory. See `:help autoload`:
 
-      ~/.vim/autoload/myfunctions.vim
+      $HOME/.vim/autoload/myfunctions.vim
       call myfunctions#foo()
 
 - Vim already gives you the ability to browse local and remote file systems, integrate `ack` or `ag` or `rg`, navigate, complete and compile your code, step through errors, run syntax checkers, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
@@ -116,7 +118,7 @@ and the second one is to copy its content in your `vimrc`, which you can do like
 
     :0read $VIMRUNTIME/defaults.vim
 
-See `:help :read`.
+See `:help :source` and `:help :read`.
 
 NOTE: the author doesn't find any of those solutions particularly satisfying and recommends instead to try to understand what that file does and, *eventually*, to copy the most useful bits over to one's `vimrc`.
 
@@ -134,6 +136,10 @@ Checking the value of an option:
 
 - use `:set option?` to check the value of an option,
 - use `:verbose set option?` to also see where it was last set.
+
+Getting help for an option:
+
+    :help 'optionname'
 
 Setting boolean options (`booloption` is not a real option):
 
@@ -174,6 +180,7 @@ Setting number options (`numoption` is not a real option):
 - See `:help key-notation`.
 - `:map` and `:map!` are too generic. Use `:nmap` for normal mode recursive mappings, `:imap` for insert mode, `:xmap` for visual mode, etc.
 - See `:help map-commands`.
+- Unless they are provided by some built-in plugin like Netrw, Vim doesn't define *any* mapping.
 
 Use non-recursive mappings ONLY if you intend to use default commands in your mappings, which is almost always what you want:
 
@@ -208,17 +215,25 @@ NOTE: since 8.2.1978, the recommended way to call Ex commands from a mapping is 
 
 Like most scripting languages, vimscript has variables.
 
-One can define a variable with the `:let` command:
+One can define a variable with`:help :let`:
 
     let variable = value
 
-And delete it with `:unlet`:
+Inspect its value with `:help :echo`:
+
+    echo variable
+
+And delete it with `:help unlet`:
 
     unlet variable
 
-In Vim, variables can be scoped by prepending a single letter and a colon to their name. Plugin authors use that feature to mimic options:
+Variables can be scoped by prepending a single letter and a colon to their name. Plugin authors use that feature to mimic options:
 
     let g:plugin_variable = 1
+
+or to keep variables "private":
+
+    let s:script_variable = 'foo'
 
 Read up on the subject in `:help internal-variables`.
 
@@ -243,6 +258,7 @@ Examples:
 - Don't forget the `abort` to let your function abort early in case of errors.
 - Custom functions must start with an uppercase character.
 - See `:help user-functions`.
+- As mentioned above, keeping one's custom functions under `$HOME/.vim/autoload/` can be a good idea.
 
 Example:
 
@@ -283,6 +299,8 @@ Alternative strategy:
 
 ## CONDITIONALS
 
+- See `:help :if`.
+
 Do something if Vim is the right version:
 
     if v:version >= 704
@@ -303,13 +321,29 @@ Do something if Vim is built with `feature`:
 
 
 
-## COLORS (WIP)
+## COLORS
 
-- GUI Vim (`gvim`, GVim, or the MacVim GUI) can display millions of colors.
+- GUI Vim (`gvim`, GVim, or the MacVim GUI) can display millions of colors and thus provide the most flexibility.
 - TUI Vim (`vim` running in your terminal) is limited by the capabilities of your terminal emulator.
 - GUI-specific colorschemes can't be expected to work in TUI Vim.
 - TUI-specific colorschemes can't be expected to work in GUI Vim.
-- To determine if a pretty colorscheme is right for your environment, Look for `guibg`/`guifg` (means GUI support) and `ctermbg`/`ctermfg` (means TUI support).
+- To determine if a pretty colorscheme is right for your environment, look for the following clues:
+  - `guibg`/`guifg` means GUI support and, probably, "true colors" support as well,
+  - `ctermbg`/`ctermfg` means TUI support,
+  - `if &t_Co >= 256` is a test to see if your terminal emulator supports 256 colors, which probably means that the scenario is supported to some extent,
+  - `if &t_Co >= 16` is a test to see if your terminal emulator supports 16 colors, which probably means that the scenario is supported to some extent.
+
+The standard location for a standalone colorscheme is:
+
+    $HOME/colors/foobar.vim
+
+You can make it the current one with:
+
+    :colorscheme foobar
+
+And persist that choice by adding this line to your `vimrc`:
+
+    colorscheme foobar
 
 
 
@@ -328,33 +362,33 @@ Properly designed plugins usually follow Vim's own runtime directory's structure
 
 - filetype-specific scripts are named after their filetype and go into `ftplugin/`
 
-      ftplugin/javascript.vim
+      $HOME/.vim/ftplugin/javascript.vim
 
 - filetype-specific indent scripts are named after their filetype and go into `indent/`
 
-      indent/javascript.vim
+      $HOME/.vim/indent/javascript.vim
 
 - filetype-specific syntax scripts are named after their filetype and go into `syntax/`
 
-      syntax/javascript.vim
+      $HOME/.vim/syntax/javascript.vim
 
 - autoloaded scripts go into `autoload/`
 
-      autoload/foo.vim
+      $HOME/.vim/autoload/foo.vim
 
 - plugin scripts go into `plugin/`
 
-      plugin/foo.vim
+      $HOME/.vim/plugin/foo.vim
 
 - plugin documentation goes into `doc/`
 
-      doc/foo.txt
+      $HOME/.vim/doc/foo.txt
 
 Historically, the normal method for installing plugins was to put each file in its corresponding directory. It was messy and the more plugins you added the messier your `vimfiles` would get.
 
-To solve that problem, a number of what people call "plugin managers" appeared, all more or less built around the same logic: each plugin is kept in its own directory under a common parent directory and Vim is told where to find those plugins.
+To solve that problem, a number of what people call "plugin managers" appeared, all more or less built around the same logic: each plugin is kept in its own directory under a common parent directory and Vim is told where to find those plugins via `:help 'runtimepath'`.
 
-Using a plugin manager is not an absolute requirement. After all, the traditional way was messy but workable, but if you think you need one, make sure you read and understand the plugin manager of your choice's README before using it.
+Using a plugin manager is not an absolute requirement. After all, the traditional way was messy but workable, but if you think you need one, make sure you read and understand the plugin manager of your choice's `README.md` before using it.
 
 ### Vim 8's "package" feature
 
@@ -367,10 +401,10 @@ Directory | Description
 
 For example, here is my setup:
 
-* `pack/bundle/start/` is where I put all my "quality of life" plugins,
-* `pack/lang/start/` is where I put all my "language support" plugins.
+* `$HOME/.vim/pack/bundle/start/` is where I put all my "quality of life" plugins,
+* `$HOME/.vim/pack/lang/start/` is where I put all my "language support" plugins.
 
-While that feature is a clear improvement, it is still not an actual plugin manager and you *may* still have to use one if you need one.
+While that feature is a clear improvement, it is still *not* an actual plugin manager and you *may* still have to use one if you need one.
 
 See `:help package`.
 
