@@ -335,7 +335,7 @@ Do something if Vim is built with `feature`:
 
 The standard location for a standalone colorscheme is:
 
-    $HOME/colors/foobar.vim
+    $HOME/.vim/colors/foobar.vim
 
 You can make it the current one with:
 
