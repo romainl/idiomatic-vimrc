@@ -323,7 +323,7 @@ Do something if Vim is built with `feature`:
 
 ## COLORS
 
-- GUI Vim (`gvim`, GVim, or the MacVim GUI) can display millions of colors and thus provide the most flexibility.
+- GUI Vim (`gvim`, GVim, or the MacVim GUI) can display millions of colors and thus provides the most flexibility.
 - TUI Vim (`vim` running in your terminal) is limited by the capabilities of your terminal emulator.
 - GUI-specific colorschemes can't be expected to work in TUI Vim.
 - TUI-specific colorschemes can't be expected to work in GUI Vim.
@@ -344,6 +344,8 @@ You can make it the current one with:
 And persist that choice by adding this line to your `vimrc`:
 
     colorscheme foobar
+
+NOTE: most colorschemes these days are provided as "plugins". Read on to see how these work.
 
 
 
@@ -383,6 +385,8 @@ Properly designed plugins usually follow Vim's own runtime directory's structure
 - plugin documentation goes into `doc/`
 
       $HOME/.vim/doc/foo.txt
+
+- etc.
 
 Historically, the normal method for installing plugins was to put each file in its corresponding directory. It was messy and the more plugins you added the messier your `vimfiles` would get.
 
