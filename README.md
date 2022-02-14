@@ -34,11 +34,15 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 
 ## FILES AND DIRECTORIES
 
-Unless you *really* know what you are doing, whatever you do to customize Vim should NEVER happen outside of `$HOME`:
+Unless you *really* know what you are doing (hint: if you learn anything from this document, it means that you are not there yet), whatever you do to customize Vim should NEVER happen outside of `$HOME`:
 
 - on Linux, BSD, and Cygwin, `$HOME` is usually `/home/username/`,
 - on Mac OS X, `$HOME` is `/Users/username/`,
 - on Windows, `$HOME` is usually `C:\Users\username\`.
+
+If in doubt, open Vim and ask it:
+
+    :echo $HOME
 
 Customizing Vim usually involves editing its main configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
 
@@ -79,10 +83,10 @@ Here are a few things to keep in mind if you decide to move your `vimrc` into yo
       <C-]> on an highlighted tag to jump to the corresponding entry
       <C-t> to come back
 
-- Always refer to the relevant `:help` before adding *anything* to your `vimrc`.
+- Always refer to the relevant `:help` before adding *anything* to your `vimrc`, even from this document.
 - You don't need `set nocompatible` if you have a custom `vimrc` at the expected location (see above).
 - `set background=dark` doesn't do what you think it does.
-- `set t_Co=256` is a bad idea. Vim sets it on its own depending on `$TERM` so set your terminal up properly instead.
+- `set t_Co=256` is a bad idea. Vim sets it on its own depending on `$TERM` so set your terminal emulator up properly instead.
 - `set paste` has a lot of nasty side effects, don't put it in your `vimrc` before carefully reading `:help 'paste'`.
 - If you have many autocommands for many filetype-specific settings, consider moving those settings to proper filetype plugins:
 
@@ -93,13 +97,13 @@ Here are a few things to keep in mind if you decide to move your `vimrc` into yo
       ~/.vim/autoload/myfunctions.vim
       call myfunctions#foo()
 
-- Vim already gives you the ability to browse local and remote file systems, integrate `ack` or `ag` or `rg`, navigate, complete and compile your code, run syntax checkers, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
+- Vim already gives you the ability to browse local and remote file systems, integrate `ack` or `ag` or `rg`, navigate, complete and compile your code, step through errors, run syntax checkers, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
 
 
 
 ## DEFAULTS.VIM
 
-Vim's spartan defaults having been a contentious topic for a very long time it has been decided at some point to provide newcomers with a more user-friendly base setup. The scheme that was devised is to *silently* source a specific runtime file, `defaults.vim` if no `vimrc` is found at the usual locations (see above). And indeed, it works as intended: simply starting Vim without a custom config truly provides a slightly more comfortable experience than previously.
+Vim's spartan defaults having been a contentious topic for a very long time, it has been decided at some point to provide newcomers with a more user-friendly base setup. The scheme that was devised is to *silently* source a specific runtime file, `defaults.vim` if no `vimrc` is found at the usual locations (see above). And indeed, it works as intended: simply starting Vim without a custom config truly provides a slightly more comfortable experience than previously.
 
 One of the troubles with that scheme is that embarking on the life-long journey of mastering Vim implies creating one's own `vimrc`, which effectively disables `defaults.vim`. This puts the new user in an even worse position than before: with the spartan defaults everyone likes to hate *and* no idea whatsoever about how to get back the admitedly useful things they got used to because `defaults.vim` is pretty much a black box. Good job!
 
