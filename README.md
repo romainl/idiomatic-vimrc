@@ -34,7 +34,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 
 ## FILES AND DIRECTORIES
 
-Unless you *really* know what you are doing (hint: if you learn anything from this document, it means that you are not there yet), whatever you do to customize Vim should NEVER happen outside of `$HOME`:
+Unless you *really* know what you are doing (hint: if you learn anything from this document, it means that you are not there yet), whatever you do to customize Vim should NEVER happen outside of your "home" directory, hereby referred to as `$HOME`:
 
 - on Linux, BSD, and Cygwin, `$HOME` is usually `/home/username/`,
 - on Mac OS X, `$HOME` is `/Users/username/`,
@@ -53,7 +53,7 @@ System | `vimrc` | `vimfiles`
 UNIX-like | `$HOME/.vimrc` | `$HOME/.vim/`
 Windows | `$HOME\_vimrc` | `$HOME\vimfiles\`
 
-Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vimfiles`. It is really a good idea, if only because it makes it easier to move your config around.
+Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vimfiles`. It is really a good idea, if only because it makes it easier to move your config from one machine to another.
 
 The following gives you a neat self-contained setup from 7.4 up:
 
@@ -67,13 +67,13 @@ Here are a few things to keep in mind if you decide to move your `vimrc` into yo
 * `.vimrc` loses its dot and `_vimrc` loses its underscore to be come `vimrc`.
 * Symbolic links can mess things up in all kinds of ways so make sure your `.vimrc` or `_vimrc` is not already linked and that you actually *move* it rather than copying it.
 
-For the sake of simplicity, the "UNIX-like" notation will be used in the rest of the document.
+For the sake of simplicity, `vimrc`, `vimfiles`, and `$HOME` will be used in the rest of the document.
 
 
 
 ## MISCELLANEOUS ADVICE
 
-- Using short names like `fu` or `ai` has ONLY cons and ZERO pros. Don't.
+- Using short names like `fu` or `ai` makes sense when you type them in the command-line but it is useless in your `vimrc`, where you would lose readability while gaining nothing. Don't.
 - Learning how to use Vim's fantastic documentation is the most useful thing a Vim newcomer could do:
 
       :help :command
@@ -107,7 +107,7 @@ For the sake of simplicity, the "UNIX-like" notation will be used in the rest of
 
 Vim's spartan defaults having been a contentious topic for a very long time, it has been decided at some point to provide newcomers with a more user-friendly base setup. The scheme that was devised is to *silently* source a specific runtime file, `defaults.vim` if no `vimrc` is found at the usual locations (see above). And indeed, it works as intended: simply starting Vim without a custom config truly provides a slightly more comfortable experience than previously.
 
-One of the troubles with that scheme is that embarking on the life-long journey of mastering Vim implies creating one's own `vimrc`, which effectively disables `defaults.vim`. This puts the new user in an even worse position than before: with the spartan defaults everyone likes to hate *and* no idea whatsoever about how to get back the admitedly useful things they got used to because `defaults.vim` is pretty much a black box. Good job!
+One of the troubles with that scheme is that embarking on the life-long journey of mastering Vim implies creating one's own `vimrc`, which effectively disables `defaults.vim`. This puts the new user in an even worse position than before: with the spartan defaults everyone likes to hate *and* no idea whatsoever about how to get back the admittedly useful things they got used to because `defaults.vim` is pretty much a black box. Good job!
 
 In case you happen to struggle with that particular problem, two quick and dirty solutions are offered under `:help defaults.vim`. The first is to source that file in your `vimrc`:
 
@@ -140,6 +140,8 @@ Checking the value of an option:
 Getting help for an option:
 
     :help 'optionname'
+    :help 'optionname
+    :help optionname'
 
 Setting boolean options (`booloption` is not a real option):
 
@@ -178,11 +180,11 @@ Setting number options (`numoption` is not a real option):
 - Use `:map <F6>` to see what is mapped to `<F6>` and in which mode.
 - Use `:verbose map <F6>` to also see where it was last mapped.
 - See `:help key-notation`.
-- `:map` and `:map!` are too generic. Use `:nmap` for normal mode recursive mappings, `:imap` for insert mode, `:xmap` for visual mode, etc.
+- `:map` and `:map!` cover too many modes. Use `:nmap` for normal mode recursive mappings, `:imap` for insert mode, `:xmap` for visual mode, etc.
 - See `:help map-commands`.
 - Unless they are provided by some built-in plugin like Netrw, Vim doesn't define *any* mapping.
 
-Use non-recursive mappings ONLY if you intend to use default commands in your mappings, which is almost always what you want:
+Use non-recursive mappings if you intend to ONLY use default commands in your mappings, which is almost always what you want:
 
     nnoremap <key> yyp
 
@@ -319,6 +321,12 @@ Do something if Vim is built with `feature`:
       " see :help feature-list
     endif
 
+Do something on Wednesdays:
+
+    if strftime("%u") == 3
+      " see :help time-functions
+    endif
+
 
 
 ## COLORS
@@ -332,6 +340,7 @@ Do something if Vim is built with `feature`:
   - `ctermbg`/`ctermfg` means TUI support,
   - `if &t_Co >= 256` is a test to see if your terminal emulator supports 256 colors, which probably means that the scenario is supported to some extent,
   - `if &t_Co >= 16` is a test to see if your terminal emulator supports 16 colors, which probably means that the scenario is supported to some extent.
+- Feature detection is not exactly a solved problem, in Vim, so it is best not to assume anything.
 
 The standard location for a standalone colorscheme is:
 
@@ -392,7 +401,7 @@ Historically, the normal method for installing plugins was to put each file in i
 
 To solve that problem, a number of what people call "plugin managers" appeared, all more or less built around the same logic: each plugin is kept in its own directory under a common parent directory and Vim is told where to find those plugins via `:help 'runtimepath'`.
 
-Using a plugin manager is not an absolute requirement. After all, the traditional way was messy but workable, but if you think you need one, make sure you read and understand the plugin manager of your choice's `README.md` before using it.
+Note that using a plugin manager is not an absolute requirement. After all, the traditional way was messy but workable, but if you think you need one, make sure you read and understand the plugin manager of your choice's `README.md` before using it.
 
 ### Vim 8's "package" feature
 
