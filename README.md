@@ -2,7 +2,7 @@
 
 Guidelines for sculpting your very own `~/.vimrc`.
 
-Unlike the many so-called "distributions", "templates" or "awesome `vimrc`" you can find on the web, this document is ***NOT*** meant to be an actual `vimrc` or even form the basis of your own `vimrc` so don't copy it to your `$HOME` and expect it to work.
+Unlike the many so-called "distributions", "templates" or "awesome `vimrc`" you can find on the web, this is ***NOT*** meant to provide you with a working config, or help you bootstrap your config with opinionated "defaults", or tell you *what* to put in your config. Therefore, don't copy it to your `$HOME` and expect it to do anything.
 
 The purpose of this repository is to document battle-tested best practices regarding Vim configuration. Use it as a reference, not as a starting point.
 
@@ -73,7 +73,7 @@ For the sake of simplicity, `vimrc`, `vimfiles`, and `$HOME` will be used in the
 
 ## MISCELLANEOUS ADVICE
 
-- Using short names like `fu` or `ai` makes sense when you type them in the command-line but it is useless in your `vimrc`, where you would lose readability while gaining nothing. Don't.
+- Using short names like `fu` or `ai` makes sense when you type them in the command-line but it is useless in your `vimrc`, where it hinders readability while gaining nothing. Don't.
 - Learning how to use Vim's fantastic documentation is the most useful thing a Vim newcomer could do:
 
       :help :command
@@ -114,7 +114,7 @@ In case you happen to struggle with that particular problem, two quick and dirty
     unlet! skip_defaults_vim
     source $VIMRUNTIME/defaults.vim
 
-and the second one is to copy its content in your `vimrc`, which you can do like this:
+The second one is to copy its content in your `vimrc`, which you can do like this:
 
     :0read $VIMRUNTIME/defaults.vim
 
@@ -182,7 +182,7 @@ Setting number options (`numoption` is not a real option):
 - See `:help key-notation`.
 - `:map` and `:map!` cover too many modes. Use `:nmap` for normal mode recursive mappings, `:imap` for insert mode, `:xmap` for visual mode, etc.
 - See `:help map-commands`.
-- Unless they are provided by some built-in plugin like Netrw, Vim doesn't define *any* mapping.
+- Unless they are provided by some built-in plugin like Netrw, Vim itself doesn't define *any* mapping. *You* do.
 
 Use non-recursive mappings if you intend to ONLY use default commands in your mappings, which is almost always what you want:
 
@@ -210,6 +210,11 @@ NOTE: since 8.2.1978, the recommended way to call Ex commands from a mapping is 
     nnoremap <key> <Cmd>MyCommand<CR>
     nnoremap <key> <Cmd>MyCommand <bar> MyOtherCommand <bar> SomeCommand<CR>
     nnoremap <key> <Cmd>call SomeFunction()<CR>
+
+The right-hand-side of a mapping is a macro, a series of keystrokes, everything there is typed for you so be careful with spaces and such. For example, the two mappings below don't do the same thing at all:
+
+    nnoremap <key> w i foo <Esc>
+    nnoremap <key> wifoo<Esc>
 
 
 
@@ -425,7 +430,7 @@ See `:help package`.
 
 ## SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
 
-The snippet below is merely a suggestion. How you customise your tools is entirely dependant on a) what you use them for and b) how well you know them, so YMMV.
+How you customise your tools is entirely dependant on a) what you use them for and b) how well you know them, so YMMV. In that spirit, the settings below are only suggestions, based on what the author would do if he had to work on a new machine for a couple of hours.
 
     " Enabling filetype support provides filetype-specific indenting,
     " syntax highlighting, omni-completion and other useful settings.
@@ -438,7 +443,7 @@ The snippet below is merely a suggestion. How you customise your tools is entire
 
     " various settings
     set autoindent                 " Minimal automatic indenting for any filetype.
-    set backspace=indent,eol,start " Proper backspace behavior.
+    set backspace=indent,eol,start " Intuitive backspace behavior.
     set hidden                     " Possibility to have more than one unsaved buffers.
     set incsearch                  " Incremental search, hit `<CR>` to stop.
     set ruler                      " Shows the current line number at the bottom-right
