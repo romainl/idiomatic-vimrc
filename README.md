@@ -4,7 +4,7 @@ Guidelines for sculpting your very own `~/.vimrc`.
 
 Unlike the many so-called "distributions", "templates" or "awesome `vimrc`" you can find on the web, this is ***NOT*** meant to provide you with a working config, or help you bootstrap your config with opinionated "defaults", or tell you *what* to put in your config. Therefore, don't copy it to your `$HOME` and expect it to do anything.
 
-The purpose of this repository is to document battle-tested best practices regarding Vim configuration. Use it as a reference, not as a starting point.
+The purpose of this project is to document battle-tested best practices regarding Vim configuration. Use it as a reference, not as a starting point.
 
 Furthermore, a `vimrc` is something personal, that grows, shrinks and evolves over time, as you increase your Vim-fu and your needs change. While looking at other people's `vimrc` can certainly be an interesting exercise, one should refrain from looking for solutions to non-existing problems.
 
@@ -44,7 +44,7 @@ If in doubt, open Vim and ask it:
 
     :echo $HOME
 
-Customizing Vim usually involves editing its main configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
+Customizing Vim usually involves editing your own configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
 
 The canonical location for your `vimrc` file and `vimfiles` directory is at the root of the `$HOME` directory mentioned above:
 
@@ -73,7 +73,7 @@ For the sake of simplicity, `vimrc`, `vimfiles`, and `$HOME` will be used in the
 
 ## MISCELLANEOUS ADVICE
 
-- Using short names like `fu` or `ai` makes sense when you type them in the command-line but it is useless in your `vimrc`, where it hinders readability while gaining nothing. Don't.
+- Using short names like `fu` or `ai` makes sense when you type them in the command-line but it is useless in your `vimrc`, where it hinders readability while providing nothing in return. Don't.
 - Learning how to use Vim's fantastic documentation is the most useful thing a Vim newcomer could do:
 
       :help :command
@@ -82,8 +82,8 @@ For the sake of simplicity, `vimrc`, `vimfiles`, and `$HOME` will be used in the
       :help i_ctrl-a
       :helpgrep foo
       :help get<C-d>
-      <C-]> on an highlighted tag to jump to the corresponding entry
-      <C-t> to come back
+      Press <C-]> (Ctrl+]) on a highlighted tag to jump to the corresponding entry
+      Press <C-t> (Ctrl+t) to come back
 
 - Always refer to the relevant `:help` before adding *anything* to your `vimrc`, even from this document.
 - You don't need `set nocompatible` if you have a custom `vimrc` at the expected location (see above).
@@ -94,10 +94,12 @@ For the sake of simplicity, `vimrc`, `vimfiles`, and `$HOME` will be used in the
 
       $HOME/.vim/after/ftplugin/php.vim
 
-- If you have many custom functions, consider moving them to the `autoload/` directory. See `:help autoload`:
+- If you have many custom functions, consider moving them to the `autoload/` directory:
 
       $HOME/.vim/autoload/myfunctions.vim
       call myfunctions#foo()
+
+  See `:help autoload`.
 
 - Vim already gives you the ability to browse local and remote file systems, integrate `ack` or `ag` or `rg`, navigate, complete and compile your code, step through errors, run syntax checkers, read documentation, filter text through external commands, etc. Make sure you have exhausted Vim's features before installing a plugin. Any plugin.
 
@@ -105,9 +107,9 @@ For the sake of simplicity, `vimrc`, `vimfiles`, and `$HOME` will be used in the
 
 ## DEFAULTS.VIM
 
-Vim's spartan defaults having been a contentious topic for a very long time, it has been decided at some point to provide newcomers with a more user-friendly base setup. The scheme that was devised is to *silently* source a specific runtime file, `defaults.vim` if no `vimrc` is found at the usual locations (see above). And indeed, it works as intended: simply starting Vim without a custom config truly provides a slightly more comfortable experience than previously.
+Vim's spartan defaults having been a contentious topic for a very long time, it has been decided between the releases of Vim 7.4 and Vim 8.0 to provide newcomers with a more user-friendly base setup. The scheme that was devised is to *silently* source a specific runtime file, `defaults.vim` if no `vimrc` is found at the usual locations (see above). And indeed, it works as intended: simply starting Vim without a custom config truly provides a slightly more comfortable experience than previously.
 
-One of the troubles with that scheme is that embarking on the life-long journey of mastering Vim implies creating one's own `vimrc`, which effectively disables `defaults.vim`. This puts the new user in an even worse position than before: with the spartan defaults everyone likes to hate *and* no idea whatsoever about how to get back the admittedly useful things they got used to because `defaults.vim` is pretty much a black box. Good job!
+One of the many troubles with that scheme is that embarking on the life-long journey of mastering Vim implies creating one's own `vimrc`, which effectively disables `defaults.vim`. This puts the new user in an even worse position than before: with the spartan defaults everyone likes to hate *and* no idea whatsoever about how to get back the admittedly useful things they got used to because `defaults.vim` is pretty much a black box. Good job!
 
 In case you happen to struggle with that particular problem, two quick and dirty solutions are offered under `:help defaults.vim`. The first is to source that file in your `vimrc`:
 
@@ -172,6 +174,8 @@ Setting number options (`numoption` is not a real option):
     set numoption-=1    " 3 - 1 = 2
     set numoption^=8    " 2 * 8 = 16
 
+    set numoption&      " Reset numoption to its default value.
+
 
 
 ## MAPPINGS
@@ -230,7 +234,7 @@ Inspect its value with `:help :echo`:
 
     echo variable
 
-And delete it with `:help unlet`:
+And delete it with `:help :unlet`:
 
     unlet variable
 
@@ -345,7 +349,7 @@ Do something on Wednesdays:
   - `ctermbg`/`ctermfg` means TUI support,
   - `if &t_Co >= 256` is a test to see if your terminal emulator supports 256 colors, which probably means that the scenario is supported to some extent,
   - `if &t_Co >= 16` is a test to see if your terminal emulator supports 16 colors, which probably means that the scenario is supported to some extent.
-- Feature detection is not exactly a solved problem, in Vim, so it is best not to assume anything.
+- Feature detection is not exactly a solved problem in Vim, so it is best not to assume anything.
 
 The standard location for a standalone colorscheme is:
 
@@ -402,11 +406,11 @@ Properly designed plugins usually follow Vim's own runtime directory's structure
 
 - etc.
 
-Historically, the normal method for installing plugins was to put each file in its corresponding directory. It was messy and the more plugins you added the messier your `vimfiles` would get.
+Historically, the normal method for installing plugins was to put each file in its corresponding directory under one's `vimfiles`, as above. It was messy and the more plugins you added the messier your `vimfiles` would get.
 
 To solve that problem, a number of what people call "plugin managers" appeared, all more or less built around the same logic: each plugin is kept in its own directory under a common parent directory and Vim is told where to find those plugins via `:help 'runtimepath'`.
 
-Note that using a plugin manager is not an absolute requirement. After all, the traditional way was messy but workable, but if you think you need one, make sure you read and understand the plugin manager of your choice's `README.md` before using it.
+Note that using a plugin manager is not an absolute requirement. After all, the traditional way was messy but workable, but if you think you need one, make sure you read and understand its `README.md` before using it.
 
 ### Vim 8's "package" feature
 
@@ -430,7 +434,7 @@ See `:help package`.
 
 ## SUGGESTED MINIMAL SETTINGS FOR PROGRAMMING
 
-How you customise your tools is entirely dependant on a) what you use them for and b) how well you know them, so YMMV. In that spirit, the settings below are only suggestions, based on what the author would do if he had to work on a new machine for a couple of hours.
+How you customise your tools is entirely dependant on a) what you use them for and b) how well you know them, so YMMV. In that spirit, the settings below are only suggestions, based on what the author would do if he had to work on a new machine for a couple of hours and didn't feel like installing his full config.
 
     " Enabling filetype support provides filetype-specific indenting,
     " syntax highlighting, omni-completion and other useful settings.
