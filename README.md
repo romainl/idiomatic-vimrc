@@ -33,6 +33,7 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 
 
 ## FILES AND DIRECTORIES
+Vim depends on "runtime files" to work properly and it is by adding/editing *your* own runtime files that you customize Vim. Those files and directories constitute Vim's *runtime*: a "system" runtime, that is best left as-is, and a "user" runtime, that is the subject of this document.
 
 Unless you *really* know what you are doing (hint: if you learn anything from this document, it means that you are not there yet), whatever you do to customize Vim should NEVER happen outside of your "home" directory, hereby referred to as `$HOME`:
 
@@ -44,7 +45,7 @@ If in doubt, open Vim and ask it:
 
     :echo $HOME
 
-Customizing Vim usually involves editing your own configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
+Customizing Vim usually involves editing your own configuration file, called `vimrc`, and moving files around your own runtime, called `vimfiles`.
 
 The canonical location for your `vimrc` file and `vimfiles` directory is at the root of the `$HOME` directory mentioned above:
 
@@ -67,7 +68,7 @@ Here are a few things to keep in mind if you decide to move your `vimrc` into yo
 * `.vimrc` loses its dot and `_vimrc` loses its underscore to be come `vimrc`.
 * Symbolic links can mess things up in all kinds of ways so make sure your `.vimrc` or `_vimrc` is not already linked and that you actually *move* it rather than copying it.
 
-For the sake of simplicity, `vimrc`, `vimfiles`, and `$HOME` will be used in the rest of the document.
+For the sake of simplicity and agnosticism, `vimrc`, `vimfiles`, and `$HOME` will be used in the rest of the document.
 
 
 
