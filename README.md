@@ -44,7 +44,7 @@ If in doubt, open Vim and ask it:
 
     :echo $HOME
 
-Now that that's out of the way, you must be aware of what Vim calls "runtime files". Vim depends on several of those to work properly, that are located in two "runtime directories": a "system" one and a "user" one. The "system" runtime directory contains all the runtime files that came with Vim and is best left as-is. The "user" runtime directory, located in the aforementioned `$HOME`, is where user most of the customization usually happens.
+Now that that's out of the way, you must be aware of what Vim calls "runtime files". Vim depends on several of those to work properly, that are located in two "runtime directories": a "system" one and a "user" one. The "system" runtime directory contains all the runtime files that came with Vim and is best left as-is. The "user" runtime directory, located in the aforementioned `$HOME`, is where most of the customization usually happens.
 
 Customizing Vim generally involves editing your own configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
 
