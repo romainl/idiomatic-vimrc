@@ -33,7 +33,6 @@ Remember, kids... **Pandajail** is where pandas are sent when you use someone el
 
 
 ## FILES AND DIRECTORIES
-Vim depends on "runtime files" to work properly and it is by adding/editing *your* own runtime files that you customize Vim. Those files and directories constitute Vim's *runtime*: a "system" runtime, that is best left as-is, and a "user" runtime, that is the subject of this document.
 
 Unless you *really* know what you are doing (hint: if you learn anything from this document, it means that you are not there yet), whatever you do to customize Vim should NEVER happen outside of your "home" directory, hereby referred to as `$HOME`:
 
@@ -45,7 +44,9 @@ If in doubt, open Vim and ask it:
 
     :echo $HOME
 
-Customizing Vim usually involves editing your own configuration file, called `vimrc`, and moving files around your own runtime, called `vimfiles`.
+Now that that's out of the way, you must be aware of what Vim calls "runtime files". Vim depends on several of those to work properly, that are located in two "runtime directories": a "system" one and a "user" one. The "system" runtime directory contains all the runtime files that came with Vim and is best left as-is. The "user" runtime directory, located in the aforementioned `$HOME`, is where user most of the customization usually happens.
+
+Customizing Vim generally involves editing your own configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
 
 The canonical location for your `vimrc` file and `vimfiles` directory is at the root of the `$HOME` directory mentioned above:
 
@@ -53,6 +54,8 @@ System | `vimrc` | `vimfiles`
 ---|---|---
 UNIX-like | `$HOME/.vimrc` | `$HOME/.vim/`
 Windows | `$HOME\_vimrc` | `$HOME\vimfiles\`
+
+Note that Vim doesn't create those files and directories on its own: *you need to create them yourself*.
 
 Since Vim 7.4 it is possible to keep your lovely `vimrc` INSIDE your `vimfiles`. It is really a good idea, if only because it makes it easier to move your config from one machine to another.
 
@@ -68,7 +71,15 @@ Here are a few things to keep in mind if you decide to move your `vimrc` into yo
 * `.vimrc` loses its dot and `_vimrc` loses its underscore to be come `vimrc`.
 * Symbolic links can mess things up in all kinds of ways so make sure your `.vimrc` or `_vimrc` is not already linked and that you actually *move* it rather than copying it.
 
-For the sake of simplicity and agnosticism, `vimrc`, `vimfiles`, and `$HOME` will be used in the rest of the document.
+For the sake of simplicity and agnosticism, `vimrc`, `vimfiles`, and `$HOME` will be used in the rest of the document, regardless of their actual name an path.
+
+### A NOTE ON TUTORIALS
+
+Vim tutorials and plugin instructions are often written from a "Unix" perspective, which has been causing confusion among Windows users since forever. If you are on Windows trying to follow Unix-centric instructions, keep in mind the rules below:
+
+- When the author says `~`, `~/`, `$HOME`, or `$HOME/`, read it as `C:\Users\username\`.
+- When the author says `vimrc`, `.vimrc`, or `~/.vimrc`, read it as `C:\Users\username\_vimrc` or, if you followed the advice above, `C:\Users\username\vimfiles\vimrc`.
+- When the author says `.vim`, `.vim/`, `~/.vim`, `~/.vim/`, read it as `C:\Users\username\vimfiles\`.
 
 
 
