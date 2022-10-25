@@ -44,9 +44,7 @@ If in doubt, open Vim and ask it:
 
     :echo $HOME
 
-Now that that's out of the way, you must be aware of what Vim calls "runtime files". Vim depends on several of those to work properly, that are located in two "runtime directories": a "system" one and a "user" one. The "system" runtime directory contains all the runtime files that came with Vim and is best left as-is. The "user" runtime directory, located in the aforementioned `$HOME`, is where most of the customization usually happens.
-
-Customizing Vim generally involves editing your own configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
+Now that that's out of the way, you must be aware of what Vim calls "runtime files". Vim depends on several of those to work properly, that are located in two "runtime directories": a "system" one and a "user" one. The "system" runtime directory contains all the runtime files that came with Vim and is best left as-is. The "user" runtime directory, located in the aforementioned `$HOME`, is where most of the customization usually happens, by way of editing your own configuration file, called `vimrc`, and moving files around your own runtime directory, called `vimfiles`.
 
 The canonical location for your `vimrc` file and `vimfiles` directory is at the root of the `$HOME` directory mentioned above:
 
@@ -71,7 +69,7 @@ Here are a few things to keep in mind if you decide to move your `vimrc` into yo
 * `.vimrc` loses its dot and `_vimrc` loses its underscore to be come `vimrc`.
 * Symbolic links can mess things up in all kinds of ways so make sure your `.vimrc` or `_vimrc` is not already linked and that you actually *move* it rather than copying it.
 
-For the sake of simplicity and agnosticism, `vimrc`, `vimfiles`, and `$HOME` will be used in the rest of the document, regardless of their actual name an path.
+For the sake of simplicity and agnosticism, `vimrc`, `vimfiles`, and `$HOME` will be used in the rest of the document, regardless of their actual name and path.
 
 ### A NOTE ON TUTORIALS
 
@@ -195,10 +193,10 @@ Setting number options (`numoption` is not a real option):
 - Don't put comments after mappings, it won't work.
 - Use `:map <F6>` to see what is mapped to `<F6>` and in which mode.
 - Use `:verbose map <F6>` to also see where it was last mapped.
-- See `:help key-notation`.
+- See `:help key-notation` for how to express a return or control combo.
 - `:map` and `:map!` cover too many modes. Use `:nmap` for normal mode recursive mappings, `:imap` for insert mode, `:xmap` for visual mode, etc.
 - See `:help map-commands`.
-- Unless they are provided by some built-in plugin like Netrw, Vim itself doesn't define *any* mapping. *You* do.
+- Unless they are provided by some packaged-in plugin like Netrw, Vim itself doesn't define *any* mapping. *You* do.
 
 Use non-recursive mappings if you intend to ONLY use default commands in your mappings, which is almost always what you want:
 
