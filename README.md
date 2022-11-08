@@ -431,10 +431,10 @@ Directory | Description
 `pack/{arbitrary name}/start/` | Plugins in this directory are enabled automatically at startup
 `pack/{arbitrary name}/opt/` | Plugins in this directory are enabled manually
 
-For example, here is my setup:
+For example, here is the author's setup:
 
-* `$HOME/.vim/pack/bundle/start/` is where I put all my "quality of life" plugins,
-* `$HOME/.vim/pack/lang/start/` is where I put all my "language support" plugins.
+* `$HOME/.vim/pack/bundle/start/` is where he puts all his "quality of life" plugins,
+* `$HOME/.vim/pack/lang/start/` is where he puts all his "language support" plugins.
 
 While that feature is a clear improvement, it is still *not* an actual plugin manager and you *may* still have to use one if you need one.
 
