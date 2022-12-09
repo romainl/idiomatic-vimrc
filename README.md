@@ -73,7 +73,7 @@ For the sake of simplicity and agnosticism, `vimrc`, `vimfiles`, and `$HOME` wil
 
 ### A NOTE ON TUTORIALS
 
-Vim tutorials and plugin instructions are often written from a "Unix" perspective, which has been causing confusion among Windows users since forever. If you are on Windows trying to follow Unix-centric instructions, keep in mind the rules below:
+Vim tutorials, including this one, and plugin instructions are often written from a "Unix" perspective, which has been causing confusion among Windows users since forever. If you are on Windows trying to follow Unix-centric instructions, keep in mind the rules below:
 
 - When the author says `~`, `~/`, `$HOME`, or `$HOME/`, read it as `C:\Users\username\`.
 - When the author says `vimrc`, `.vimrc`, or `~/.vimrc`, read it as `C:\Users\username\_vimrc` or, if you followed the advice above, `C:\Users\username\vimfiles\vimrc`.
