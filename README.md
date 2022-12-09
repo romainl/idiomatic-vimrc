@@ -186,6 +186,18 @@ Setting number options (`numoption` is not a real option):
 
     set numoption&      " Reset numoption to its default value.
 
+- An option can be global (applies to all buffers), window-local (applies to the window where it was set), or buffer-local (applies to the buffer where it was set). Additionally, an option can have both a global value *and* a local one. Using `:help :setlocal` instead of `:set` is a handy way to force a local value but it is not a silver bullet. Read the option's documentation carefully before deciding *how* to set it.
+- The `:set` family of commands doesn't accept expressions.
+
+      :set stroption='my string'     " value is literally 'my string', with the quotes
+      :set stroption=MyFunction()    " value is literally MyFunction(), not the return value of MyFunction()
+      :set numoption=23+4            " throws an error
+
+   Use `:help :let-&` instead:
+   
+      :let &stroption = 'my string'     " value is my\ string
+      :let &stroption = MyFunction()    " value is return value of MyFunction()
+      :let &numoption = 23+4            " value is 27
 
 
 ## MAPPINGS
