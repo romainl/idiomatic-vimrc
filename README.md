@@ -2,7 +2,7 @@
 
 Guidelines for sculpting your very own `~/.vimrc`.
 
-Unlike the many so-called "distributions", "templates" or "awesome `vimrc`" you can find on the web, this is ***NOT*** meant to provide you with a working config, or help you bootstrap your config with opinionated "defaults", or tell you *what* to put in your config. Therefore, don't copy it to your `$HOME` and expect it to do anything.
+Unlike the many so-called "distributions", "templates" or "awesome `vimrc`" you can find on the web, this project is ***NOT*** meant to provide you with a working config, or help you bootstrap your config with opinionated "defaults", or tell you *what* to put in your config. Therefore, don't copy it to your `$HOME` and expect it to do anything.
 
 The purpose of this project is to document battle-tested best practices regarding Vim configuration. Use it as a reference, not as a starting point.
 
